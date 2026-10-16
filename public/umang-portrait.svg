@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0c10" />
+      <stop offset="50%" stop-color="#040506" />
+      <stop offset="100%" stop-color="#020202" />
+    </linearGradient>
+    <radialGradient id="glow-grad" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#e7e9ec" stop-opacity="0.16" />
+      <stop offset="50%" stop-color="#3c4045" stop-opacity="0.05" />
+      <stop offset="100%" stop-color="#020202" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="head-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a2e34" />
+      <stop offset="50%" stop-color="#181a1d" />
+      <stop offset="100%" stop-color="#0d0e10" />
+    </linearGradient>
+    <linearGradient id="cyber-line" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="transparent" />
+      <stop offset="50%" stop-color="#e7e9ec" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="transparent" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="900" fill="url(#bg-grad)" />
+  <circle cx="400" cy="380" r="320" fill="url(#glow-grad)" />
+
+  <!-- Cyber grid overlay -->
+  <g stroke="#ffffff" stroke-opacity="0.04" stroke-width="1">
+    <line x1="100" y1="0" x2="100" y2="900" />
+    <line x1="200" y1="0" x2="200" y2="900" />
+    <line x1="300" y1="0" x2="300" y2="900" />
+    <line x1="400" y1="0" x2="400" y2="900" />
+    <line x1="500" y1="0" x2="500" y2="900" />
+    <line x1="600" y1="0" x2="600" y2="900" />
+    <line x1="700" y1="0" x2="700" y2="900" />
+    <line x1="0" y1="150" x2="800" y2="150" />
+    <line x1="0" y1="300" x2="800" y2="300" />
+    <line x1="0" y1="450" x2="800" y2="450" />
+    <line x1="0" y1="600" x2="800" y2="600" />
+    <line x1="0" y1="750" x2="800" y2="750" />
+  </g>
+
+  <!-- Developer Silhouette -->
+  <!-- Shoulders / Torso -->
+  <path d="M 160 840 C 180 720, 260 630, 400 630 C 540 630, 620 720, 640 840 L 640 900 L 160 900 Z" fill="url(#head-grad)" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1.5" />
+  
+  <!-- Collar / Jacket details -->
+  <path d="M 340 640 L 400 760 L 460 640" fill="none" stroke="#e7e9ec" stroke-opacity="0.3" stroke-width="2" />
+  <path d="M 400 760 L 400 900" fill="none" stroke="#e7e9ec" stroke-opacity="0.2" stroke-width="1.5" stroke-dasharray="4 4" />
+
+  <!-- Head / Face silhouette -->
+  <ellipse cx="400" cy="420" rx="140" ry="180" fill="url(#head-grad)" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1.5" />
+  
+  <!-- Hair line / Silhouette -->
+  <path d="M 260 400 C 260 260, 310 210, 400 210 C 490 210, 540 260, 540 400 C 540 330, 500 240, 400 240 C 300 240, 260 330, 260 400 Z" fill="#3c4045" fill-opacity="0.8" />
+  
+  <!-- Sleek Tech Glasses / HUD Visor -->
+  <rect x="290" y="380" width="95" height="42" rx="4" fill="#090a0b" stroke="#e7e9ec" stroke-opacity="0.75" stroke-width="2" />
+  <rect x="415" y="380" width="95" height="42" rx="4" fill="#090a0b" stroke="#e7e9ec" stroke-opacity="0.75" stroke-width="2" />
+  <line x1="385" y1="398" x2="415" y2="398" stroke="#e7e9ec" stroke-opacity="0.75" stroke-width="2" />
+  
+  <!-- Visor Reflections -->
+  <line x1="305" y1="412" x2="335" y2="390" stroke="#ffffff" stroke-opacity="0.5" stroke-width="1.5" />
+  <line x1="430" y1="412" x2="460" y2="390" stroke="#ffffff" stroke-opacity="0.5" stroke-width="1.5" />
+
+  <!-- Targeting / HUD Crosshairs -->
+  <circle cx="400" cy="420" r="230" fill="none" stroke="#e7e9ec" stroke-opacity="0.08" stroke-width="1" stroke-dasharray="10 8" />
+  <circle cx="400" cy="420" r="16" fill="none" stroke="#e7e9ec" stroke-opacity="0.4" stroke-width="1" />
+  <line x1="375" y1="420" x2="425" y2="420" stroke="#e7e9ec" stroke-opacity="0.4" stroke-width="1" />
+  <line x1="400" y1="395" x2="400" y2="445" stroke="#e7e9ec" stroke-opacity="0.4" stroke-width="1" />
+
+  <!-- Neon code / data floating runes -->
+  <text x="70" y="240" font-family="monospace" font-size="12" fill="#858b92" letter-spacing="3">AI_ENGINEER // V2.0</text>
+  <text x="70" y="265" font-family="monospace" font-size="10" fill="#52575d" letter-spacing="2">SYS_STATUS: OPTIMAL</text>
+  <text x="610" y="240" font-family="monospace" font-size="12" fill="#858b92" letter-spacing="3">LATENCY // &lt;2ms</text>
+  <text x="610" y="265" font-family="monospace" font-size="10" fill="#52575d" letter-spacing="2">RAG_NODES: ACTIVE</text>
+  <text x="70" y="680" font-family="monospace" font-size="11" fill="#858b92" letter-spacing="2">ID: UK-2026-DELHI</text>
+  <text x="610" y="680" font-family="monospace" font-size="11" fill="#858b92" letter-spacing="2">TERMINAL_BENCH: PASS</text>
+
+  <!-- Horizontal Scan Glint -->
+  <line x1="0" y1="420" x2="800" y2="420" stroke="url(#cyber-line)" stroke-width="1.5" />
+</svg>
