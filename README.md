@@ -1,54 +1,63 @@
-# Umang Khandelwal — AI Engineer & Full-Stack Developer Portfolio
+# Umang Khandelwal — AI Engineer & Full-Stack Developer
 
-An exact, ditto look-alike implementation of [thkrdanubhav.in](https://www.thkrdanubhav.in/) tailored specifically for **Umang Khandelwal**, incorporating all real resume details, GitHub repositories, LinkedIn profile, AI benchmarking achievements, and full-stack projects.
-
-![Portfolio Preview](/umang-portrait.svg)
+A high-performance personal portfolio showcasing AI systems engineering, LLM benchmark architectures, RAG pipelines, and full-stack web applications.
 
 ---
 
-## 🚀 Key Highlights & Matched Design System
+## 🚀 Key Highlights & Architecture
 
-- **Exact Look-and-Feel**:
-  - Deep black aesthetic (`#020202`) with titanium brushed gradients (`--titanium`).
-  - High-gloss dual-tone metallic hero typography with dual layers: **UMANG** (`.name-matte`) and **KHANDELWAL** (`.chrome-hero`).
-  - Atmospheric 88px geometric background grid with radial ambient glow orbs.
-  - Interactive canvas particle mesh responding to cursor physics.
-  - Right-edge traveling light beam (`.edge-light`) and header hairline progress runner (`.hdr-pulse`).
-  - HUD developer portrait with chrome brackets (`.chrome-bracket`), coordinate markers (`X:032`, `Y:118`), and animated scan beam (`.pscan-beam`).
-  - `Initiate connection` CTA button (`.cta-connect`) with 45-degree beveled geometry, rotating conic particle spark, neon zap bolt, and interactive circuit path (`.conn-circuit`).
-  - Desktop vertical minimap (`min-[1400px]:flex`) and mobile vertical orientation indicators.
-  - Capabilities & Track Record expandable accordions with subtle active radial spotlight.
-- **AI-Powered "Ask Me Anything" Feature**:
-  - Interactive HUD modal assistant grounded on Umang's real resume data.
+- **High-Performance Dark Aesthetic**:
+  - Deep black aesthetic (`#020202`) with titanium brushed gradients.
+  - Dual-tone metallic hero typography featuring specular chrome and matte layers.
+  - Atmospheric 88px geometric background grid with subtle radial ambient glow orbs.
+  - Spring-physics interactive particle mesh responding dynamically to pointer movement.
+  - Real portrait HUD frame with scan beam effects, chrome corner brackets, and real-time pointer coordinate telemetry (`X:0xx Y:0yy / SUBJECT / 001`).
+  - Looping role ticker cycling across core domains.
+  - Interactive electric lightning arc heading on Connect.
+  - Staged boot sequence with matrix cipher decryption.
+- **AI-Powered "Ask AI" Assistant**:
+  - Interactive terminal assistant modal grounded in verified resume experience and projects.
   - Quick-prompt chips for instant queries (skills, experience, AI benchmarks, Stay Finder, Ink & Insights, hiring availability).
-  - Built-in instant intelligence engine + optional user-provided Google Gemini API key for live LLM streaming generation.
-- **Real Verified Content**:
-  - **Experience**: Crossing Hurdles (Project Sentinel Ultra & Terminus 3), Handshake AI (Project Dynamo & TerminalBench 2), Flitzen Technologies UK Limited.
-  - **Projects**: LLM Powered Smart Screen Recorder, Stay Finder, Ink & Insights, GCC Intel, Autonomous Coding Agent Benchmarks.
-  - **Education**: B.Tech in Electronics & Communication Engineering from Guru Jambheshwar University of Science & Technology; Aggarwal Public School.
-  - **Contact**: Direct email `khandelwalu196@gmail.com`, phone `+91-8586919205`, LinkedIn, and GitHub links.
-  - **Resume**: Includes working "Download Resume" buttons wired directly to the real resume PDF.
+  - Built-in instant answer engine + optional Google Gemini API live streaming integration.
+- **Verified Industry Experience**:
+  - **Crossing Hurdles**: Developing advanced software engineering benchmark tasks for Project Sentinel Ultra and Terminus 3 to evaluate frontier coding agents (Harbor format, oracle implementations, deterministic verifiers).
+  - **Handshake AI**: Authoring software engineering benchmark tasks for TerminalBench 2 and Project Dynamo (Docker testbeds, deterministic verification pipelines).
+- **Core Projects**:
+  - **LLM Powered Smart Screen Recorder**: OCR video capture pipeline with Sentence Transformers, ChromaDB, and Gemini RAG synthesis.
+  - **Stay Finder**: Full-stack accommodation booking engine with Next.js App Router, PostgreSQL, and Prisma ORM.
+  - **Ink & Insights**: Data-driven blog engine with Redis sliding-window rate limiting and automated Gemini content critique.
+  - **GCC Intel**: Market intelligence platform auditing verified data across India's 2,000+ Global Capability Centers.
+  - **Autonomous Agent Benchmarking Suite**: Frontier coding agent evaluation testbeds with Docker isolation and deterministic oracle harnesses.
+- **Education**:
+  - **B.Tech in Electronics & Communication Engineering**, Guru Jambheshwar University of Science and Technology (2022 – 2026).
+  - **Senior Secondary (12th Grade)**, Aggarwal Public School (2021 – 2022).
+- **Contact & Channels**:
+  - Direct Email: `khandelwalu196@gmail.com`
+  - LinkedIn: [in/umang-khandelwal](https://www.linkedin.com/in/umang-khandelwal-71604228b/)
+  - GitHub: [@umangkhandelwall](https://github.com/umangkhandelwall)
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Framework**: React 19 + TypeScript + Vite
-- **Styling**: Tailwind CSS v4 + Custom Titanium & Chrome CSS Gradients
-- **Animations**: Framer Motion + Canvas 2D Physics + CSS Keyframe Engines
-- **Icons**: Lucide React + Custom Tech Brand SVGs
-- **Celebration & Micro-interactions**: `canvas-confetti` + dynamic cursor interaction
+- **Frontend**: React 19, TypeScript, Next.js, Vite
+- **Styling**: Tailwind CSS v4, Custom Titanium & Chrome Specular Shader CSS
+- **Animations**: Framer Motion, HTML5 Canvas 2D Physics, Hardware-Accelerated Keyframes
+- **AI & Data**: Google Gemini API, Sentence Transformers, ChromaDB, OpenCV, Tesseract OCR
+- **Backend & Database**: Python, PostgreSQL, Prisma ORM, Redis, Docker, Bash
+- **Icons**: Lucide React + Custom Monochrome Brand Vectors
 
 ---
 
-## 💻 Local Installation & Running
+## 💻 Local Installation & Setup
 
 ### Prerequisites
-Make sure you have [Node.js](https://nodejs.org/) installed (v18 or higher recommended).
+Make sure [Node.js](https://nodejs.org/) (v18 or higher) is installed.
 
-### 1. Navigate to the project directory
+### 1. Clone the repository
 ```bash
-cd "C:\Users\khand\.gemini\antigravity\scratch\umang-portfolio"
+git clone https://github.com/umangkhandelwall/Portfolio.git
+cd Portfolio
 ```
 
 ### 2. Install dependencies
@@ -66,85 +75,18 @@ Open [http://localhost:5173/](http://localhost:5173/) in your browser.
 ```bash
 npm run build
 ```
-The optimized static build will be output to the `dist/` directory.
+Optimized assets will be compiled into the `dist/` directory.
 
 ---
 
-## 🌐 Deploying for Free
+## 🌐 Deployment
 
-### Option 1: Vercel (Recommended - 1 Click)
-1. Push your repository to your GitHub account (`https://github.com/umangkhandelwall/portfolio`).
-2. Go to [Vercel](https://vercel.com/) and click **"Add New Project"**.
-3. Import your repository. Vercel automatically detects Vite:
-   - **Framework Preset**: Vite
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `dist`
-4. Click **Deploy**. Your site will be live on a `*.vercel.app` domain with free SSL!
-
-*Or deploy from terminal via Vercel CLI:*
-```bash
-npx vercel
-```
-
----
-
-### Option 2: Netlify (Drag & Drop or Git)
-1. Run `npm run build` to create the `dist/` folder.
-2. Go to [Netlify Drop](https://app.netlify.com/drop).
-3. Drag and drop the `dist/` folder onto the page. Your site goes live instantly!
-4. Or connect your GitHub repository to Netlify for automatic continuous deployment.
-
----
-
-### Option 3: GitHub Pages
-1. In `vite.config.ts`, if your repository is named `portfolio`, set `base: '/portfolio/'`:
-   ```ts
-   export default defineConfig({
-     base: '/portfolio/',
-     plugins: [react(), tailwindcss()],
-   });
-   ```
-2. Build and publish:
-   ```bash
-   npm run build
-   npx gh-pages -d dist
-   ```
-
----
-
-## 📂 Project Structure
-
-```
-umang-portfolio/
-├── public/
-│   ├── Umang-Khandelwal-Resume.pdf  # Downloadable real resume
-│   └── umang-portrait.svg           # High-tech HUD avatar silhouette
-├── src/
-│   ├── components/
-│   │   ├── AiAssistantModal.tsx     # "Ask me anything" AI Chatbot
-│   │   ├── BackgroundGrid.tsx       # 88px grid + particle canvas physics
-│   │   ├── Connect.tsx              # Contact section + message form + socials
-│   │   ├── Education.tsx            # Degrees + verified achievements
-│   │   ├── Experience.tsx           # Track record accordion
-│   │   ├── Footer.tsx               # Copyright & back to top
-│   │   ├── Header.tsx               # Fixed bar + system status + navigation
-│   │   ├── Hero.tsx                 # Hero section + typography + HUD portrait
-│   │   ├── Icons.tsx                # SVG Brand icons (GitHub, LinkedIn)
-│   │   ├── Minimap.tsx              # Vertical section progress minimap
-│   │   ├── ProjectModal.tsx         # In-depth project dossier dialog
-│   │   └── Projects.tsx             # Projects index + GitHub CTA banner
-│   ├── data/
-│   │   └── portfolioData.ts         # Centralized verified data & credentials
-│   ├── App.tsx                      # Root coordinator
-│   ├── index.css                    # Titanium, chrome, HUD & scan styles
-│   └── main.tsx                     # React 19 entrypoint
-├── index.html                       # HTML shell with Google Fonts
-├── package.json
-├── tsconfig.json
-└── vite.config.ts                   # Vite + Tailwind v4 + React plugins
-```
+### Vercel (1-Click Deployment)
+This repository includes a pre-configured `vercel.json` file.
+1. Import this repository into [Vercel](https://vercel.com/new).
+2. Click **Deploy**. Vercel will automatically build and publish the portfolio with instant SSL and global CDN distribution.
 
 ---
 
 ## 📄 License
-Created for **Umang Khandelwal**.
+© 2026 Umang Khandelwal. All rights reserved.
