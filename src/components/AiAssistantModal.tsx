@@ -26,7 +26,9 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ isOpen, onCl
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [apiKey, setApiKey] = useState(() => localStorage.getItem('umang_gemini_key') || '');
+  const [apiKey, setApiKey] = useState(() =>
+    typeof window !== 'undefined' ? localStorage.getItem('umang_gemini_key') || '' : ''
+  );
   const [showKeyInput, setShowKeyInput] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
