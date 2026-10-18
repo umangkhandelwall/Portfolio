@@ -24,7 +24,7 @@ export const PERSONAL_INFO: PersonalInfo = PersonalInfoSchema.parse({
   handle: "umangkhandelwal",
   status: "ONLINE",
   availability: "AVAILABLE",
-  location: "Delhi NCR / Haryana, India",
+  location: "Faridabad, India",
   email: "khandelwalu196@gmail.com",
   github: "https://github.com/umangkhandelwall",
   githubUsername: "@umangkhandelwall",

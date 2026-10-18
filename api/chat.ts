@@ -107,7 +107,7 @@ He can be reached directly at **khandelwalu196@gmail.com**.`;
 - **Email**: khandelwalu196@gmail.com
 - **LinkedIn**: https://www.linkedin.com/in/umang-khandelwal-71604228b/
 - **GitHub**: https://github.com/umangkhandelwall
-- **Location**: Delhi NCR / Haryana, India`;
+- **Location**: Faridabad, India`;
   }
 
   return `Umang Khandelwal is an Advanced AI Engineer & Full-Stack Developer specializing in full-stack Next.js web applications, coding agent evaluation benchmarks, and multimodal RAG pipelines. Would you like to know more about his specific projects, background, or how to get in touch?`;
@@ -196,7 +196,7 @@ export default async function handler(req: any, res: any) {
     const systemPrompt = `You are the AI Assistant for Umang Khandelwal's portfolio. Answer factually, professionally, and concisely:
 Name: Umang Khandelwal
 Roles: Full-Stack Developer & Advanced AI Engineer
-Location: Delhi NCR / Haryana, India
+Location: Faridabad, India
 Email: khandelwalu196@gmail.com
 LinkedIn: https://www.linkedin.com/in/umang-khandelwal-71604228b/
 GitHub: https://github.com/umangkhandelwall

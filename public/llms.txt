@@ -4,7 +4,7 @@
 ## Personal & Contact Information
 - Name: Umang Khandelwal
 - Roles: Advanced AI Engineer | Full-Stack Developer | LLM Systems Specialist
-- Location: Delhi NCR / Haryana, India
+- Location: Faridabad, India
 - Website: https://umangkhandelwal.vercel.app/
 - Email: khandelwalu196@gmail.com
 - GitHub: https://github.com/umangkhandelwall

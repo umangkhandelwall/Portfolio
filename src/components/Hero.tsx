@@ -11,7 +11,6 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant }) => {
   const [roleIndex, setRoleIndex] = useState(0);
-  const [coords, setCoords] = useState({ x: 32, y: 118 });
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -19,16 +18,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant }) => {
     }, 2800);
     return () => clearInterval(timer);
   }, []);
-
-  const handlePortraitMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = Math.floor(e.clientX - rect.left);
-    const y = Math.floor(e.clientY - rect.top);
-    setCoords({
-      x: Math.max(0, Math.min(999, x)),
-      y: Math.max(0, Math.min(999, y)),
-    });
-  };
 
   return (
     <section
@@ -52,7 +41,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant }) => {
                 <ScrambleText text="AI & LLM SYSTEMS" delay={250} duration={700} />
               </span>
               <span className="label-mono text-[10px]">
-                <ScrambleText text="DELHI NCR / INDIA" delay={400} duration={650} />
+                <ScrambleText text="FARIDABAD, INDIA" delay={400} duration={650} />
               </span>
               <span className="label-mono text-[10px] flex items-center gap-2 text-emerald-400">
                 <span className="inline-block size-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#10b981]" />
@@ -162,24 +151,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant }) => {
             </div>
           </div>
 
-          {/* Right Column: Real Portrait HUD Frame with Live Cursor Coordinates */}
+          {/* Right Column: Real Portrait Photo Frame */}
           <figure className="lg:col-span-5">
             <div
               data-signal-anchor="true"
               className="mx-auto w-[min(88vw,340px)] lg:mr-0 lg:ml-auto lg:w-[clamp(340px,30vw,430px)]"
               style={{ perspective: '1000px' }}
-              onMouseMove={handlePortraitMouseMove}
             >
               <div className="group/glass relative titanium">
-                {/* Frame Header with Dynamic Tracking Readout */}
-                <figcaption className="relative flex items-center justify-between border-x border-t border-[var(--border)] px-3 py-2 bg-[#090b0e]">
-                  <span className="label-mono inline-flex items-center gap-2 text-[var(--primary)] text-[10px]">
-                    <span className="inline-block size-1 bg-[var(--primary)]" />
-                    {`X:${String(coords.x).padStart(3, '0')} Y:${String(coords.y).padStart(3, '0')} / SUBJECT / 001`}
-                  </span>
-                  <span className="label-mono text-[10px]">{PERSONAL_INFO.location}</span>
-                </figcaption>
-
                 {/* Portrait Screen Frame */}
                 <div className="portrait-frame relative aspect-square w-full overflow-hidden border border-[var(--border)] bg-[#040507]">
                   {/* Internal grid */}
