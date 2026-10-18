@@ -1,5 +1,48 @@
 // Server-side Gemini API route for Vercel Serverless Functions
-// Ensures GEMINI_API_KEY is never exposed to the client bundle or browser
+// Includes Upstash Redis rate limiting per IP and max message length validation
+
+import { Ratelimit } from '@upstash/ratelimit';
+import { Redis } from '@upstash/redis';
+
+// Upstash rate limiter instance if credentials are configured in environment
+let upstashRatelimit: Ratelimit | null = null;
+if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+  try {
+    const redis = new Redis({
+      url: process.env.UPSTASH_REDIS_REST_URL,
+      token: process.env.UPSTASH_REDIS_REST_TOKEN,
+    });
+    upstashRatelimit = new Ratelimit({
+      redis,
+      limiter: Ratelimit.slidingWindow(6, '60 s'),
+      prefix: 'portfolio_chat_limit',
+    });
+  } catch (err) {
+    console.warn('Failed to initialize Upstash Redis client:', err);
+  }
+}
+
+// In-memory sliding window fallback for local dev / unconfigured environments
+const memoryRateLimitMap = new Map<string, { count: number; resetTime: number }>();
+
+function checkMemoryRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const windowMs = 60 * 1000;
+  const maxRequests = 6;
+
+  const record = memoryRateLimitMap.get(ip);
+  if (!record || now > record.resetTime) {
+    memoryRateLimitMap.set(ip, { count: 1, resetTime: now + windowMs });
+    return true;
+  }
+
+  if (record.count >= maxRequests) {
+    return false;
+  }
+
+  record.count += 1;
+  return true;
+}
 
 function getServerFallbackReply(query: string): string {
   const q = query.toLowerCase();
@@ -14,7 +57,7 @@ function getServerFallbackReply(query: string): string {
     return `Umang's top engineering projects include:
 1. **Stay Finder**: Full-stack accommodation booking platform with Next.js (App Router), TypeScript, PostgreSQL, Prisma ORM, atomic reservation transactions to prevent booking race conditions, and role-based access control.
 2. **Ink & Insights**: Content publishing platform featuring Redis sliding-window rate limiting to manage AI quotas and automated editorial critique.
-3. **GCC Intel**: Market intelligence platform analyzing India's Global Capability Centers across major metro clusters with comparative operating cost modeling.
+3. **GCC Intel**: Market intelligence platform analyzing India's Global Capability Centers across 6 metro clusters with comparative operating cost modeling.
 4. **LLM Powered Smart Screen Recorder**: Multimodal OCR video capture with Tesseract, dense vector search in ChromaDB, and timestamped citations.
 5. **Autonomous Agent Benchmarking Suite**: Standardized benchmark tasks and deterministic Docker verification testbeds for AI coding agents.`;
   }
@@ -71,7 +114,7 @@ He can be reached directly at **khandelwalu196@gmail.com**.`;
 }
 
 export default async function handler(req: any, res: any) {
-  // Set CORS headers
+  // CORS configuration
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -89,21 +132,68 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
+    // 1. IP Resolution for Rate Limiting
+    const forwarded = req.headers['x-forwarded-for'];
+    const ip =
+      (typeof forwarded === 'string' ? forwarded.split(',')[0]?.trim() : null) ||
+      (req.headers['x-real-ip'] as string) ||
+      req.socket?.remoteAddress ||
+      'anonymous-ip';
+
+    // 2. Upstash / In-Memory Rate Limiting (6 requests / 60 seconds)
+    if (upstashRatelimit) {
+      const { success, remaining, reset } = await upstashRatelimit.limit(ip);
+      res.setHeader('X-RateLimit-Remaining', remaining);
+      res.setHeader('X-RateLimit-Reset', reset);
+
+      if (!success) {
+        res.setHeader('Retry-After', '60');
+        return res.status(429).json({
+          error: 'Rate limit reached',
+          reply: "You've sent several queries in a short window. Please wait 60 seconds before sending another message.",
+        });
+      }
+    } else {
+      const allowed = checkMemoryRateLimit(ip);
+      if (!allowed) {
+        res.setHeader('Retry-After', '60');
+        return res.status(429).json({
+          error: 'Rate limit reached',
+          reply: "You've sent several queries in a short window. Please wait 60 seconds before sending another message.",
+        });
+      }
+    }
+
+    // 3. Message Validation & Max Length Enforcement (500 characters max)
     const { message } = req.body || {};
     if (!message || typeof message !== 'string') {
       return res.status(400).json({ error: 'Valid message string is required' });
     }
 
-    const apiKey = process.env.GEMINI_API_KEY;
+    const trimmedMessage = message.trim();
+    if (!trimmedMessage) {
+      return res.status(400).json({ error: 'Message cannot be empty' });
+    }
 
-    // If server has no GEMINI_API_KEY configured, use factual server fallback
-    if (!apiKey) {
-      return res.status(200).json({
-        reply: getServerFallbackReply(message),
+    const MAX_LENGTH = 500;
+    if (trimmedMessage.length > MAX_LENGTH) {
+      return res.status(400).json({
+        error: `Message exceeds maximum allowed length of ${MAX_LENGTH} characters.`,
+        reply: `Your question is too long (${trimmedMessage.length} characters). Please shorten it to under ${MAX_LENGTH} characters.`,
       });
     }
 
-    const systemPrompt = `You are the AI Assistant for Umang Khandelwal's portfolio. Answer factually and concisely:
+    // 4. Server-Side Gemini Execution
+    const apiKey = process.env.GEMINI_API_KEY;
+
+    if (!apiKey) {
+      // Graceful server-side fallback if GEMINI_API_KEY is not set in environment
+      return res.status(200).json({
+        reply: getServerFallbackReply(trimmedMessage),
+      });
+    }
+
+    const systemPrompt = `You are the AI Assistant for Umang Khandelwal's portfolio. Answer factually, professionally, and concisely:
 Name: Umang Khandelwal
 Roles: Full-Stack Developer & Advanced AI Engineer
 Location: Delhi NCR / Haryana, India
@@ -117,11 +207,11 @@ Experience:
 Projects:
 1. Stay Finder: Full-stack accommodation booking platform with Next.js App Router, TypeScript, PostgreSQL, Prisma ORM, atomic reservation transactions to prevent booking race conditions, and role-based access control.
 2. Ink & Insights: Publishing platform with Next.js, PostgreSQL, Prisma, Redis sliding-window rate limiting, and Gemini-assisted content critique.
-3. GCC Intel: Market intelligence platform analyzing India's Global Capability Centers with comparative metro cost modeling and state policy breakdown.
+3. GCC Intel: Market intelligence platform analyzing India's Global Capability Centers across 6 metro clusters with comparative operating cost modeling and state policy breakdown.
 4. LLM Powered Smart Screen Recorder: Asynchronous video frame OCR pipeline with Tesseract, dense vector embeddings in ChromaDB, and timestamped citations.
 5. Autonomous Agent Benchmarking Suite: Benchmark suites for autonomous coding agents with isolated Docker testbeds and deterministic verification scripts.
 Education: B.Tech in Electronics & Communication Engineering (2022-2026), Guru Jambheshwar University of Science and Technology.
-Never invent metrics, user counts, or confidential project names. Keep answers concise and in markdown.`;
+Never invent metrics, user counts, or confidential project names. Keep answers concise and formatted in markdown.`;
 
     const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
     const geminiRes = await fetch(geminiUrl, {
@@ -133,12 +223,12 @@ Never invent metrics, user counts, or confidential project names. Keep answers c
             role: 'user',
             parts: [
               { text: systemPrompt },
-              { text: `Question: ${message}` }
+              { text: `Question: ${trimmedMessage}` }
             ]
           }
         ],
         generationConfig: {
-          maxOutputTokens: 600,
+          maxOutputTokens: 500,
           temperature: 0.2,
         }
       })
@@ -147,7 +237,7 @@ Never invent metrics, user counts, or confidential project names. Keep answers c
     if (!geminiRes.ok) {
       console.warn('Gemini upstream returned status:', geminiRes.status);
       return res.status(200).json({
-        reply: getServerFallbackReply(message),
+        reply: getServerFallbackReply(trimmedMessage),
       });
     }
 
@@ -155,7 +245,7 @@ Never invent metrics, user counts, or confidential project names. Keep answers c
     const candidateText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
 
     return res.status(200).json({
-      reply: candidateText || getServerFallbackReply(message),
+      reply: candidateText || getServerFallbackReply(trimmedMessage),
     });
   } catch (error) {
     console.error('Server error in /api/chat:', error);

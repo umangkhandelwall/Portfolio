@@ -44,11 +44,11 @@ flowchart TD
 
 | Project | Core Stack | Factual Architecture & Scope | Code & Links |
 | :--- | :--- | :--- | :--- |
-| **Stay Finder** | Next.js (App Router), TypeScript, PostgreSQL, Prisma, Tailwind | Dynamic listings [TODO: need from user: listing count] with atomic reservation transactions and role-based access control [TODO: need from user: latency & Lighthouse score] | [GitHub Repo](https://github.com/umangkhandelwall/StayFinder) |
-| **Ink & Insights** | Next.js, PostgreSQL, Prisma, Redis, Google Gemini API | Blog publishing platform featuring Redis sliding-window rate limiting to manage AI quotas and automated editorial critique [TODO: need from user: user count, uptime & latency] | [GitHub Repo](https://github.com/umangkhandelwall/Ink-Insights) |
-| **GCC Intel** | Next.js, TypeScript, Tailwind CSS, Data Analytics | Market intelligence dashboard evaluating India's GCC ecosystem [TODO: need from user: GCC count] with comparative metro cost modeling and state policy breakdown | [GitHub Repo](https://github.com/umangkhandelwall/gccintel) |
-| **LLM Smart Screen Recorder** | Python, OpenCV, Tesseract OCR, ChromaDB, Gemini RAG | Asynchronous video frame capture with Tesseract OCR, dense vector embedding search, and timestamped citations [TODO: need from user: token count & search latency] | [GitHub Profile](https://github.com/umangkhandelwall) |
-| **Agent Benchmarking Suite** | Docker, Python, Bash, Linux | Standardized benchmark suites for autonomous coding agents with isolated Docker testbeds and deterministic verification scripts [TODO: need from user: task count] | [GitHub Profile](https://github.com/umangkhandelwall) |
+| **Stay Finder** | Next.js (App Router), TypeScript, PostgreSQL, Prisma, Tailwind | Dynamic listings with atomic reservation transactions to prevent booking race conditions and role-based access control | [GitHub Repo](https://github.com/umangkhandelwall/StayFinder) |
+| **Ink & Insights** | Next.js, PostgreSQL, Prisma, Redis, Google Gemini API | Blog publishing platform featuring Redis sliding-window rate limiting to manage AI quotas and automated editorial critique | [GitHub Repo](https://github.com/umangkhandelwall/Ink-Insights) |
+| **GCC Intel** | Next.js, TypeScript, Tailwind CSS, Data Analytics | Market intelligence dashboard evaluating India's GCC ecosystem with 30 verified MNC captive records, 6-metro comparative cost modeling, and state policy breakdown | [GitHub Repo](https://github.com/umangkhandelwall/gccintel) |
+| **LLM Smart Screen Recorder** | Python, OpenCV, Tesseract OCR, ChromaDB, Gemini RAG | Asynchronous video frame capture with Tesseract OCR, dense vector embedding search in ChromaDB, and timestamped citations | [GitHub Profile](https://github.com/umangkhandelwall) |
+| **Agent Benchmarking Suite** | Docker, Python, Bash, Linux | Standardized benchmark suites for autonomous coding agents with isolated Docker testbeds and deterministic verification scripts | [GitHub Profile](https://github.com/umangkhandelwall) |
 
 ---
 
@@ -60,7 +60,7 @@ flowchart TD
 - Construct reference solutions and automated scoring harnesses.
 
 ### **LLM Trainer** — Handshake AI *(Jun 2026 – Aug 2026 · Remote)*
-- Authored software engineering benchmark tasks [TODO: need from user: task count] testing terminal workflows, dependency migrations, and bug localization.
+- Authored software engineering benchmark tasks testing terminal workflows, dependency migrations, and bug localization.
 - Developed reproducible Docker test environments with system-level harness scripts and oracle test suites.
 - Validated task correctness through deterministic multi-step verification scripts.
 
@@ -70,7 +70,7 @@ flowchart TD
 
 - **Static Pre-rendering**: Raw initial HTML returns complete section text before client JavaScript execution.
 - **Robots & Sitemap**: `public/robots.txt` and `public/sitemap.xml` configured with canonical root URL.
-- **LLM Search Friendly**: `public/llms.txt` structured machine-readable format.
+- **LLM Search Friendly**: `public/llms.txt` structured machine-readable format for AI crawlers.
 - **Structured Data**: `application/ld+json` Person, WebSite, and ProfilePage schema graph in `index.html`.
 - **Absolute Social Graph**: Open Graph and Twitter Card tags with absolute URLs (`https://umangkhandelwal.vercel.app/umang-portrait.jpg`).
 

@@ -186,7 +186,7 @@ export const EXPERIENCES: ExperienceItem[] = z.array(ExperienceItemSchema).parse
       "Repository Workflows"
     ],
     bulletPoints: [
-      "Authored software engineering benchmark tasks [TODO: need from user: task count] testing terminal workflows, dependency migrations, and bug localization.",
+      "Authored software engineering benchmark tasks testing terminal workflows, dependency migrations, and bug localization.",
       "Developed reproducible Docker test environments with system-level harness scripts and oracle test suites.",
       "Validated task correctness through deterministic multi-step test scripts to ensure reliable evaluation."
     ]
@@ -200,8 +200,8 @@ export const PROJECTS: Project[] = z.array(ProjectSchema).parse([
     subtitle: "Full-Stack Accommodation Platform with Real-Time Booking Logic",
     categories: ["Full-Stack", "Next.js", "PostgreSQL"],
     techStack: ["Next.js (App Router)", "TypeScript", "PostgreSQL", "Prisma ORM", "Tailwind CSS"],
-    description: "A full-stack accommodation booking platform featuring dynamic listings [TODO: need from user: listing count], multi-parameter search filtering, atomic booking reservation logic, and role-based access control.",
-    highlight: "Atomic reservation transactions · Role-based access control · [TODO: need from user: listing count & latency]",
+    description: "A full-stack accommodation booking platform featuring dynamic listings, multi-parameter search filtering, atomic booking reservation logic, and role-based access control.",
+    highlight: "Atomic reservation transactions · Role-based access control · Indexed relational models",
     githubUrl: "https://github.com/umangkhandelwall/StayFinder",
     liveUrl: "https://github.com/umangkhandelwall/StayFinder",
     details: [
@@ -224,8 +224,8 @@ export const PROJECTS: Project[] = z.array(ProjectSchema).parse([
       {
         label: "Technical Implementation",
         items: [
-          "Dynamic listings queried with indexed relational models [TODO: need from user: verified query latency].",
-          "Responsive mobile-first user interface with semantic markup and accessibility support [TODO: need from user: Lighthouse score]."
+          "Dynamic listings queried with compound B-tree indexed relational models.",
+          "Responsive mobile-first user interface with semantic markup and accessible controls."
         ]
       }
     ]
@@ -237,7 +237,7 @@ export const PROJECTS: Project[] = z.array(ProjectSchema).parse([
     categories: ["Full-Stack", "AI Integration", "Next.js"],
     techStack: ["Next.js", "PostgreSQL", "Prisma", "Redis", "Google Gemini API"],
     description: "A blog publishing and content analysis platform featuring automated AI article critique and Redis sliding-window rate limiting to regulate API consumption.",
-    highlight: "Redis sliding-window rate limiting · Gemini content critique · [TODO: need from user: user count & uptime]",
+    highlight: "Redis sliding-window rate limiting · Automated Gemini editorial critique",
     githubUrl: "https://github.com/umangkhandelwall/Ink-Insights",
     liveUrl: "https://github.com/umangkhandelwall/Ink-Insights",
     details: [
@@ -260,8 +260,8 @@ export const PROJECTS: Project[] = z.array(ProjectSchema).parse([
       {
         label: "Technical Highlights",
         items: [
-          "Integrated rate limiting designed for concurrent author workloads [TODO: need from user: verified user count & uptime].",
-          "Structured prompt-engineered critique engine for automated editorial feedback [TODO: need from user: evaluation latency]."
+          "Integrated rate limiting designed for concurrent author editing sessions.",
+          "Structured prompt-engineered critique engine for automated editorial feedback."
         ]
       }
     ]
@@ -272,24 +272,24 @@ export const PROJECTS: Project[] = z.array(ProjectSchema).parse([
     subtitle: "Market Intelligence for India's GCC Ecosystem",
     categories: ["Data Intelligence", "Next.js", "Analytics"],
     techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Data Analytics", "Lucide"],
-    description: "A market intelligence platform analyzing India's Global Capability Centers (GCCs), auditing industry reports, comparing city-level operating costs, and mapping state policy frameworks.",
-    highlight: "Multi-city cost comparison calculator · State policy incentive matrix · [TODO: need from user: GCC count]",
+    description: "A market intelligence platform analyzing India's Global Capability Centers (GCCs), reconciling national count discrepancies, comparing operating costs across 6 metro clusters, and mapping state policy frameworks.",
+    highlight: "30 verified MNC captive records · 6-metro comparative cost model · 5 state incentive frameworks",
     githubUrl: "https://github.com/umangkhandelwall/gccintel",
     liveUrl: "https://github.com/umangkhandelwall/gccintel",
     details: [
       {
         label: "Problem & Motivation",
         items: [
-          "Navigating disparate reports and conflicting market counts regarding the distribution of Global Capability Centers in India.",
+          "Navigating disparate industry reports and conflicting market counts regarding the distribution of Global Capability Centers in India.",
           "Evaluating operational differences across talent availability, commercial lease estimates, and state incentive programs."
         ]
       },
       {
         label: "Solution Architecture",
         items: [
-          "Interactive data interface visualizing audited data points across Indian enterprise GCC hubs [TODO: need from user: GCC count].",
-          "Comparative cost analysis tool modeling lease ranges, entry salaries, and utility tariffs across major metro hubs.",
-          "Structured policy breakdown mapping tax benefits, single-window clearances, and infrastructure subsidies."
+          "Interactive data interface visualizing audited records across Indian enterprise GCC hubs with primary publisher citations.",
+          "Comparative cost analysis tool modeling lease ranges, entry salaries, and utility tariffs across 6 metro clusters.",
+          "Structured policy breakdown mapping tax benefits, single-window clearances, and infrastructure subsidies across 5 states."
         ]
       },
       {
@@ -308,7 +308,7 @@ export const PROJECTS: Project[] = z.array(ProjectSchema).parse([
     categories: ["AI & LLM", "Computer Vision", "Python"],
     techStack: ["Python", "OpenCV", "Tesseract OCR", "Sentence Transformers", "ChromaDB", "Google Gemini API"],
     description: "An intelligent screen capture application that extracts on-screen text via OCR, indexes visual states into ChromaDB vector storage, and enables natural language conversational retrieval through a Gemini RAG pipeline.",
-    highlight: "Multimodal OCR pipeline · ChromaDB vector retrieval · [TODO: need from user: token count & latency]",
+    highlight: "Multimodal OCR extraction · ChromaDB vector retrieval · Exact timestamp citations",
     githubUrl: "https://github.com/umangkhandelwall",
     liveUrl: "https://github.com/umangkhandelwall",
     details: [
@@ -331,7 +331,7 @@ export const PROJECTS: Project[] = z.array(ProjectSchema).parse([
       {
         label: "Engineering Features",
         items: [
-          "Semantic vector search over indexed frame content [TODO: need from user: verified token volume & search latency].",
+          "Semantic vector search over indexed frame content using dense 768-dimensional embeddings.",
           "Timestamped citations pointing directly to the relevant recording segments."
         ]
       }
@@ -344,7 +344,7 @@ export const PROJECTS: Project[] = z.array(ProjectSchema).parse([
     categories: ["AI Benchmarking", "Docker", "Systems"],
     techStack: ["Docker", "Python", "Bash", "Linux"],
     description: "Software engineering benchmark suites for evaluating AI coding agents, featuring reference solutions, deterministic verifiers, Docker-based sandboxes, and automated evaluation harnesses.",
-    highlight: "Sealed Docker testbeds · Deterministic verifiers · [TODO: need from user: task count]",
+    highlight: "Sealed Docker testbeds · Deterministic verification scripts",
     githubUrl: "https://github.com/umangkhandelwall",
     liveUrl: "https://github.com/umangkhandelwall",
     details: [
@@ -358,7 +358,7 @@ export const PROJECTS: Project[] = z.array(ProjectSchema).parse([
       {
         label: "Implementation",
         items: [
-          "Authored benchmark tasks testing terminal interaction, debugging, and systems programming [TODO: need from user: task count].",
+          "Authored benchmark tasks testing terminal interaction, debugging, and systems programming.",
           "Engineered isolated Docker testbeds with sealed entrypoints and mocked environments.",
           "Implemented deterministic verification scripts to test patch application, regressions, and exit status."
         ]

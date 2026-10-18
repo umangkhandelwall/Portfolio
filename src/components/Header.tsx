@@ -47,10 +47,10 @@ export const Header: React.FC<HeaderProps> = ({
           </span>
         </a>
 
-        {/* Desktop Navigation (>=1400px matches reference) */}
+        {/* Desktop Navigation (>=1100px matches reference) */}
         <nav
           aria-label="Sections"
-          className="hidden min-w-0 items-center gap-4 min-[1400px]:flex min-[1480px]:gap-6"
+          className="hidden min-w-0 items-center gap-3 min-[1100px]:flex min-[1240px]:gap-5"
         >
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
@@ -89,18 +89,19 @@ export const Header: React.FC<HeaderProps> = ({
             <span>Ask AI</span>
           </button>
 
-          {/* Resume Download Button */}
+          {/* Resume View / Download Button */}
           <a
             href={RESUME_PATH}
-            download="Umang-Khandelwal-Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="border border-[var(--border)] px-3.5 py-1 font-mono text-[11px] tracking-[0.2em] uppercase text-[var(--foreground)] transition-colors hover:border-[var(--primary)] hover:text-[var(--primary)] hover:bg-white/[0.03]"
           >
             Resume
           </a>
         </nav>
 
-        {/* Right side mobile / tablet controls */}
-        <div className="flex items-center gap-2.5 min-[1400px]:hidden">
+        {/* Right side mobile / tablet controls (<1100px) */}
+        <div className="flex items-center gap-2.5 min-[1100px]:hidden">
           <button
             type="button"
             onClick={onOpenAiAssistant}
@@ -113,10 +114,11 @@ export const Header: React.FC<HeaderProps> = ({
 
           <a
             href={RESUME_PATH}
-            download="Umang-Khandelwal-Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="border border-[var(--border)] px-2.5 py-1 font-mono text-[10px] tracking-[0.16em] uppercase text-[var(--foreground)] hover:border-[var(--primary)]"
           >
-            CV
+            Resume
           </a>
 
           <button
@@ -141,9 +143,9 @@ export const Header: React.FC<HeaderProps> = ({
         <span aria-hidden="true" className="hdr-pulse" />
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay (<1100px) */}
       {mobileMenuOpen && (
-        <div className="min-[1400px]:hidden fixed inset-x-0 top-[49px] bottom-0 z-40 bg-[#020202]/95 backdrop-blur-xl border-b border-[var(--border)] p-6 overflow-y-auto">
+        <div className="min-[1100px]:hidden fixed inset-x-0 top-[49px] bottom-0 z-40 bg-[#020202]/95 backdrop-blur-xl border-b border-[var(--border)] p-6 overflow-y-auto">
           <div className="mx-auto max-w-lg flex flex-col gap-6">
             <div className="border-b border-[var(--line)] pb-4">
               <span className="label-mono">NAVIGATION MENU</span>

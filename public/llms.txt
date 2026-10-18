@@ -22,29 +22,29 @@
 1. Stay Finder — Accommodation Booking Platform
    - Tech: Next.js (App Router), TypeScript, PostgreSQL, Prisma ORM, Tailwind CSS
    - GitHub: https://github.com/umangkhandelwall/StayFinder
-   - Description: Full-stack booking platform with dynamic listings [TODO: need from user: listing count], atomic reservation transactions to prevent booking race conditions, and role-based access control.
-   - Highlights: Compound B-tree indexes on booking date ranges and coordinates; responsive mobile-first UI [TODO: need from user: query latency & Lighthouse score].
+   - Description: Full-stack accommodation booking platform with dynamic listings, atomic reservation transactions to prevent booking race conditions, and role-based access control.
+   - Highlights: Compound B-tree indexes on booking date ranges and coordinates; responsive mobile-first UI with accessible controls.
 
 2. Ink & Insights — AI Publishing Platform
    - Tech: Next.js, PostgreSQL, Prisma, Redis, Google Gemini API
    - GitHub: https://github.com/umangkhandelwall/Ink-Insights
-   - Description: Content publishing platform featuring automated editorial critique and Redis sliding-window rate limiting to manage AI inference quotas [TODO: need from user: active user count & uptime].
-   - Highlights: Asynchronous Gemini API integration for tone and structure feedback; optimistic UI state updates [TODO: need from user: latency].
+   - Description: Content publishing platform featuring automated editorial critique and Redis sliding-window rate limiting to manage AI inference quotas.
+   - Highlights: Asynchronous Gemini API integration for tone and structure feedback; optimistic UI state updates.
 
 3. GCC Intel — Market Intelligence Platform
    - Tech: Next.js, TypeScript, Tailwind CSS, Data Analytics
    - GitHub: https://github.com/umangkhandelwall/gccintel
-   - Description: Market intelligence platform analyzing India's Global Capability Centers (GCCs) across major tech hubs [TODO: need from user: verified GCC count].
-   - Highlights: Multi-city operating cost calculator modeling commercial lease estimates, entry salaries, and utility tariffs, alongside state incentive policy mappings.
+   - Description: Market intelligence platform analyzing India's Global Capability Centers (GCCs), reconciling national count discrepancies, comparing operating costs across 6 metro clusters, and mapping state policy frameworks.
+   - Highlights: 30 verified MNC captive records with primary source citations, 6-metro comparative cost model (Bengaluru, Hyderabad, Pune, Chennai, Delhi-NCR, Mumbai), and 5 state incentive frameworks.
 
 4. LLM Powered Smart Screen Recorder
    - Tech: Python, OpenCV, Tesseract OCR, Sentence Transformers, ChromaDB, Google Gemini API
    - Description: Intelligent screen capture application that extracts on-screen text via OCR, indexes visual states into ChromaDB vector storage, and enables natural language retrieval through a Gemini RAG pipeline.
-   - Highlights: Asynchronous video frame sampling with OpenCV, dense vector embeddings, and timestamped citations [TODO: need from user: token count & search latency].
+   - Highlights: Asynchronous video frame sampling with OpenCV, dense 768-dimensional vector embeddings, and exact timestamp citations.
 
 5. Autonomous Agent Benchmarking Suite
    - Tech: Docker, Python, Bash, Linux
-   - Description: Benchmark tasks and deterministic evaluation testbeds for evaluating autonomous AI coding agents on system debugging, dependencies, and repository workflows [TODO: need from user: task count].
+   - Description: Benchmark tasks and deterministic evaluation testbeds for evaluating autonomous AI coding agents on system debugging, dependencies, and repository workflows.
    - Highlights: Isolated Docker sandbox testbeds with sealed entrypoints and automated verification harnesses.
 
 ## Professional Experience
@@ -53,7 +53,7 @@
   - Builds sealed Docker containers and deterministic verifiers to ensure repeatable evaluation runs.
   - Constructs reference solutions and automated scoring harnesses.
 - LLM Trainer @ Handshake AI (Jun 2026 – Aug 2026, Remote)
-  - Authored software engineering benchmark tasks [TODO: need from user: task count] testing terminal workflows, library migrations, and bug localization.
+  - Authored software engineering benchmark tasks testing terminal workflows, dependency migrations, and bug localization.
   - Developed reproducible Docker test environments with system-level harness scripts and oracle test suites.
   - Validated task correctness through deterministic multi-step verification scripts.
 
