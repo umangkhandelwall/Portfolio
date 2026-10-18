@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { PERSONAL_INFO, RESUME_PATH } from '../data/portfolioData';
 import { HeroMesh } from './HeroMesh';
 import { ScrambleText } from './ScrambleText';
@@ -11,6 +11,43 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant }) => {
   const [roleIndex, setRoleIndex] = useState(0);
+  const [isCardHovered, setIsCardHovered] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+
+  const rotateY = useSpring(useTransform(mouseX, [0, 1], [-2.8, 2.8]), { stiffness: 220, damping: 25 });
+  const rotateX = useSpring(useTransform(mouseY, [0, 1], [2.8, -2.8]), { stiffness: 220, damping: 25 });
+  const lineX = useTransform(mouseX, [0, 1], ['0%', '70%']);
+  const lineY = useTransform(mouseY, [0, 1], ['0%', '70%']);
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType !== 'mouse' || !cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    mouseX.set(Math.max(0, Math.min(1, x)));
+    mouseY.set(Math.max(0, Math.min(1, y)));
+    if (cardRef.current) {
+      cardRef.current.style.setProperty('--lx', `${(x * 100).toFixed(1)}%`);
+      cardRef.current.style.setProperty('--ly', `${(y * 100).toFixed(1)}%`);
+    }
+  };
+
+  const handlePointerEnter = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType === 'mouse') setIsCardHovered(true);
+  };
+
+  const handlePointerLeave = () => {
+    setIsCardHovered(false);
+    mouseX.set(0.5);
+    mouseY.set(0.5);
+    if (cardRef.current) {
+      cardRef.current.style.setProperty('--lx', '50%');
+      cardRef.current.style.setProperty('--ly', '50%');
+    }
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -151,20 +188,57 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant }) => {
             </div>
           </div>
 
-          {/* Right Column: Real Portrait Photo Frame */}
+          {/* Right Column: Interactive Real Portrait HUD Dossier Frame */}
           <figure className="lg:col-span-5">
             <div
+              ref={cardRef}
               data-signal-anchor="true"
-              className="mx-auto w-[min(88vw,340px)] lg:mr-0 lg:ml-auto lg:w-[clamp(340px,30vw,430px)]"
-              style={{ perspective: '1000px' }}
+              className="mx-auto w-[min(88vw,340px)] lg:mr-0 lg:ml-auto lg:w-[clamp(340px,30vw,430px)] select-none"
+              style={{ perspective: '1000px', '--lx': '50%', '--ly': '50%' } as React.CSSProperties}
+              onPointerMove={handlePointerMove}
+              onPointerEnter={handlePointerEnter}
+              onPointerLeave={handlePointerLeave}
             >
-              <div className="group/glass relative titanium">
+              <motion.div
+                style={{
+                  rotateX,
+                  rotateY,
+                  transformStyle: 'preserve-3d',
+                }}
+                className="group/glass relative titanium"
+              >
+                {/* Dossier Header with System Index & Verified Location */}
+                <figcaption className="relative flex items-center justify-between border-x border-t border-[var(--border)] px-3 py-2 bg-[#090b0e]">
+                  <motion.span
+                    animate={{ x: isCardHovered ? 4 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="label-mono inline-flex items-center gap-2 text-[var(--primary)] text-[10px]"
+                  >
+                    <span className="inline-block size-1 bg-[var(--primary)] shadow-[0_0_6px_var(--primary)]" />
+                    IMG / 001
+                  </motion.span>
+                  <motion.span
+                    animate={{ x: isCardHovered ? -4 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="label-mono text-[10px] text-[var(--muted-foreground)]"
+                  >
+                    {PERSONAL_INFO.location}
+                  </motion.span>
+                </figcaption>
+
                 {/* Portrait Screen Frame */}
-                <div className="portrait-frame relative aspect-square w-full overflow-hidden border border-[var(--border)] bg-[#040507]">
+                <div
+                  className="portrait-frame relative aspect-square w-full overflow-hidden border border-[var(--border)] bg-[#040507]"
+                  style={{
+                    boxShadow: isCardHovered
+                      ? '0 0 0 1px rgba(255, 255, 255, 0.22), 0 20px 45px -12px rgba(0, 0, 0, 0.85)'
+                      : undefined,
+                  }}
+                >
                   {/* Internal grid */}
                   <div
                     aria-hidden="true"
-                    className="absolute inset-0 opacity-[0.14]"
+                    className="pointer-events-none absolute inset-0 opacity-[0.14] z-10"
                     style={{
                       backgroundImage:
                         'linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)',
@@ -173,45 +247,78 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant }) => {
                     }}
                   />
 
-                  {/* Inner ambient glow */}
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0"
-                    style={{
-                      background:
-                        'radial-gradient(220px circle at 50% 50%, rgba(231, 233, 236, 0.14), transparent 70%)',
-                    }}
-                  />
-
-                  {/* User Real Portrait Photo */}
+                  {/* Real Portrait Photo of Umang with optimized face framing & rich tone */}
                   <img
                     src="/umang-portrait.jpg"
                     alt="Umang Khandelwal — Advanced AI Engineer & Full-Stack Developer"
                     width={800}
                     height={900}
-                    className="relative h-full w-full object-cover filter grayscale contrast-125 brightness-95"
+                    loading="eager"
+                    decoding="async"
+                    className="relative h-full w-full object-cover object-[center_18%] filter grayscale-[20%] contrast-[1.04] brightness-[0.98] group-hover/glass:grayscale-0 group-hover/glass:contrast-100 group-hover/glass:brightness-100 transition-all duration-700 ease-out"
+                  />
+
+                  {/* Cinematic Dark Edge Vignette - seamlessly dissolves daytime foliage/background into the deep dark HUD chamber */}
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 z-10"
+                    style={{
+                      background:
+                        'radial-gradient(circle at 50% 30%, transparent 35%, rgba(4, 5, 7, 0.45) 58%, rgba(4, 5, 7, 0.86) 78%, #040507 98%)',
+                    }}
+                  />
+
+                  {/* Interactive Cursor Spotlight */}
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 z-20 transition-opacity duration-300"
+                    style={{
+                      background:
+                        'radial-gradient(220px circle at var(--lx) var(--ly), rgba(231, 233, 236, 0.16), transparent 70%)',
+                      opacity: isCardHovered ? 1 : 0.4,
+                    }}
+                  />
+
+                  {/* Sliding Hairline Laser Crosshairs tracking mouse coordinates */}
+                  <motion.span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute top-0 left-0 h-px w-[30%] bg-[var(--primary)] z-20 shadow-[0_0_8px_var(--primary)]"
+                    style={{ x: lineX }}
+                    animate={{ opacity: isCardHovered ? 1 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                  <motion.span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute top-0 right-0 h-[30%] w-px bg-[var(--primary)] z-20 shadow-[0_0_8px_var(--primary)]"
+                    style={{ y: lineY }}
+                    animate={{ opacity: isCardHovered ? 1 : 0 }}
+                    transition={{ duration: 0.2 }}
                   />
 
                   {/* Chrome Corner Brackets */}
                   <span
                     aria-hidden="true"
-                    className="chrome-bracket pointer-events-none absolute size-5 left-0 top-0 border-l-2 border-t-2"
+                    className="chrome-bracket pointer-events-none absolute size-5 left-0 top-0 border-l-2 border-t-2 z-20 transition-all duration-300"
+                    style={{ margin: isCardHovered ? 2 : 0, opacity: isCardHovered ? 1 : 0.6 }}
                   />
                   <span
                     aria-hidden="true"
-                    className="chrome-bracket pointer-events-none absolute size-5 right-0 top-0 border-r-2 border-t-2"
+                    className="chrome-bracket pointer-events-none absolute size-5 right-0 top-0 border-r-2 border-t-2 z-20 transition-all duration-300"
+                    style={{ margin: isCardHovered ? 2 : 0, opacity: isCardHovered ? 1 : 0.6 }}
                   />
                   <span
                     aria-hidden="true"
-                    className="chrome-bracket pointer-events-none absolute size-5 left-0 bottom-0 border-l-2 border-b-2"
+                    className="chrome-bracket pointer-events-none absolute size-5 left-0 bottom-0 border-l-2 border-b-2 z-20 transition-all duration-300"
+                    style={{ margin: isCardHovered ? 2 : 0, opacity: isCardHovered ? 1 : 0.6 }}
                   />
                   <span
                     aria-hidden="true"
-                    className="chrome-bracket pointer-events-none absolute size-5 right-0 bottom-0 border-r-2 border-b-2"
+                    className="chrome-bracket pointer-events-none absolute size-5 right-0 bottom-0 border-r-2 border-b-2 z-20 transition-all duration-300"
+                    style={{ margin: isCardHovered ? 2 : 0, opacity: isCardHovered ? 1 : 0.6 }}
                   />
 
-                  {/* Corner Targeting Trace & Spark */}
-                  <span aria-hidden="true" className="ptrace">
+                  {/* Corner Targeting Reticle Trace & Spark */}
+                  <span aria-hidden="true" className="ptrace z-20">
                     <i className="ptrace-c ptrace-c--tl" />
                     <i className="ptrace-c ptrace-c--tr" />
                     <i className="ptrace-c ptrace-c--br" />
@@ -219,9 +326,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant }) => {
                     <i className="ptrace-spark" />
                   </span>
 
-                  {/* Scanning HUD Effects */}
-                  <div className="pscan" aria-hidden="true">
+                  {/* Scanning HUD Effects with Corner Glints & Telemetry */}
+                  <div className="pscan z-20" aria-hidden="true">
                     <span className="pscan-beam" />
+                    <span className="pscan-glint pscan-glint--tl" />
+                    <span className="pscan-glint pscan-glint--tr" />
+                    <span className="pscan-glint pscan-glint--bl" />
+                    <span className="pscan-glint pscan-glint--br" />
                     <span className="pscan-mark pscan-mark--tl">LAT: 28.4089° N</span>
                     <span className="pscan-mark pscan-mark--tr">LON: 77.3178° E</span>
                     <span className="pscan-mark pscan-mark--bl">UK // ENG-AI</span>
@@ -231,22 +342,33 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant }) => {
                   {/* Status dot in frame */}
                   <span
                     aria-hidden="true"
-                    className="pointer-events-none absolute top-2.5 right-2.5 size-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#10b981]"
+                    className="pointer-events-none absolute top-2.5 right-2.5 size-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#10b981] z-20"
                   />
                 </div>
 
                 {/* Frame Footer */}
                 <div className="relative flex items-center justify-between gap-3 border-x border-b border-[var(--border)] px-3 py-2 bg-[#090b0e]">
-                  <span className="label-mono text-[var(--foreground)] font-medium text-[10px]">
+                  <motion.span
+                    animate={{ x: isCardHovered ? 4 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="label-mono text-[var(--foreground)] font-medium text-[10px]"
+                  >
                     {PERSONAL_INFO.name}
-                  </span>
-                  <span className="label-mono text-emerald-400 text-[10px]">BENCHMARK ENGINEER</span>
+                  </motion.span>
+                  <motion.span
+                    animate={{ x: isCardHovered ? -4 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="label-mono text-emerald-400 text-[10px] flex items-center gap-1.5"
+                  >
+                    <span className="inline-block size-1 rounded-full bg-emerald-400 shadow-[0_0_6px_#10b981]" />
+                    AI ENGINEER
+                  </motion.span>
                 </div>
 
                 <p className="label-mono mt-2 text-right leading-[1.7] text-[var(--primary)] text-[10px]">
                   {PERSONAL_INFO.openToRoles}
                 </p>
-              </div>
+              </motion.div>
             </div>
           </figure>
         </div>

@@ -326,6 +326,59 @@ body {
 .pscan-mark--bl { bottom: 6px; left: 6px; }
 .pscan-mark--br { font-size: 11px; bottom: 6px; right: 6px; }
 
+.pscan-glint {
+  opacity: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.45) 45%, transparent 70%);
+  border-radius: 9999px;
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  animation: 4.5s ease-out infinite pscan-glint;
+}
+.pscan-glint--tl { top: -3px; left: -3px; }
+.pscan-glint--tr { top: -3px; right: -3px; }
+.pscan-glint--bl { bottom: -3px; left: -3px; animation-delay: 2.2s; }
+.pscan-glint--br { bottom: -3px; right: -3px; animation-delay: 2.2s; }
+
+@keyframes pscan-glint {
+  0%, 75%, 100% { opacity: 0; transform: scale(0.5); }
+  80% { opacity: 1; transform: scale(1.2); }
+  88% { opacity: 0; transform: scale(0.7); }
+}
+
+.ptrace {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+.ptrace-c {
+  border: 0 solid var(--primary);
+  width: 24px;
+  height: 24px;
+  box-shadow: 0 0 8px -2px rgba(255, 255, 255, 0.35);
+  position: absolute;
+  opacity: 0.85;
+}
+.ptrace-c--tl { border-top-width: 2px; border-left-width: 2px; top: 0; left: 0; }
+.ptrace-c--tr { border-top-width: 2px; border-right-width: 2px; top: 0; right: 0; }
+.ptrace-c--br { border-bottom-width: 2px; border-right-width: 2px; bottom: 0; right: 0; }
+.ptrace-c--bl { border-bottom-width: 2px; border-left-width: 2px; bottom: 0; left: 0; }
+.ptrace-spark {
+  background: radial-gradient(circle, #ffffff, var(--primary) 55%, transparent 72%);
+  border-radius: 9999px;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  bottom: -3px;
+  left: -3px;
+  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.6);
+}
+
+.portrait-frame {
+  box-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.85), 0 2px 10px -8px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 /* Initiate Connection CTA */
 .cta-connect {
   isolation: isolate;
