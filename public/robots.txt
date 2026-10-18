@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Canonical Sitemap
+Sitemap: https://umangkhandelwal.vercel.app/sitemap.xml
+
+# LLM Crawler Context
+# See https://umangkhandelwal.vercel.app/llms.txt for structured machine-readable portfolio data

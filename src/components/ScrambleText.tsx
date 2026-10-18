@@ -15,7 +15,7 @@ export const ScrambleText: React.FC<ScrambleTextProps> = ({
   duration = 800,
   className = '',
 }) => {
-  const [displayText, setDisplayText] = useState('');
+  const [displayText, setDisplayText] = useState(text);
 
   useEffect(() => {
     let frameId: number;

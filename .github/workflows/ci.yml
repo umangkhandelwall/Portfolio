@@ -1,0 +1,37 @@
+name: CI Quality Gates
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Typecheck & Static SSG Build Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck TypeScript
+        run: npx tsc --noEmit
+
+      - name: Build client & SSG pre-render
+        run: npm run build
+
+      - name: Verify dist/index.html output
+        run: |
+          test -f dist/index.html || exit 1
+          grep -q "Umang Khandelwal" dist/index.html || exit 1
+          echo "✓ Static pre-rendered HTML verified successfully"

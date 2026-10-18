@@ -95,10 +95,13 @@ export const Projects: React.FC = () => {
                     {numStr}
                   </span>
 
-                  {/* Title */}
+                  {/* Title & Metric */}
                   <span className="relative block sm:col-span-7">
                     <span className="font-display block text-[clamp(1.0rem,2.1vw,1.45rem)] font-extrabold uppercase transition-colors duration-300 text-[var(--foreground)] group-hover:text-[var(--primary-bright)]">
                       {proj.title}
+                    </span>
+                    <span className="font-mono text-[10px] tracking-[0.14em] text-emerald-400/90 uppercase block mt-1">
+                      ▸ {proj.metric}
                     </span>
                   </span>
 

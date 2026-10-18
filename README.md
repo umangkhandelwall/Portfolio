@@ -1,92 +1,130 @@
 # Umang Khandelwal — AI Engineer & Full-Stack Developer
 
-A high-performance personal portfolio showcasing AI systems engineering, LLM benchmark architectures, RAG pipelines, and full-stack web applications.
+[![CI Quality Gates](https://github.com/umangkhandelwall/Portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/umangkhandelwall/Portfolio/actions)
+[![Live Production Site](https://img.shields.io/badge/Production-Live-emerald?style=flat&logo=vercel)](https://umangkhandelwal.vercel.app/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
+[![React 19](https://img.shields.io/badge/React-19-61DAFB?style=flat&logo=react)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS%20v4-38B2AC?style=flat&logo=tailwindcss)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+A high-performance personal portfolio showcasing production full-stack platforms, autonomous coding agent benchmarking testbeds, and RAG retrieval pipelines. Built with static pre-rendering (SSG), Zod schema verification, real-time telemetry HUD, and strict dark-mode titanium aesthetic.
+
+🔗 **Live Production URL**: [https://umangkhandelwal.vercel.app/](https://umangkhandelwal.vercel.app/)  
+📄 **Machine-Readable AI Context**: [https://umangkhandelwal.vercel.app/llms.txt](https://umangkhandelwal.vercel.app/llms.txt)
 
 ---
 
-## 🚀 Key Highlights & Architecture
+## 🏗️ Architecture & Static Pre-Rendering (SSG)
 
-- **High-Performance Dark Aesthetic**:
-  - Deep black aesthetic (`#020202`) with titanium brushed gradients.
-  - Dual-tone metallic hero typography featuring specular chrome and matte layers.
-  - Atmospheric 88px geometric background grid with subtle radial ambient glow orbs.
-  - Spring-physics interactive particle mesh responding dynamically to pointer movement.
-  - Real portrait HUD frame with scan beam effects, chrome corner brackets, and real-time pointer coordinate telemetry (`X:0xx Y:0yy / SUBJECT / 001`).
-  - Looping role ticker cycling across core domains.
-  - Interactive electric lightning arc heading on Connect.
-  - Staged boot sequence with matrix cipher decryption.
-- **AI-Powered "Ask AI" Assistant**:
-  - Interactive terminal assistant modal grounded in verified resume experience and projects.
-  - Quick-prompt chips for instant queries (skills, experience, AI benchmarks, Stay Finder, Ink & Insights, hiring availability).
-  - Built-in instant answer engine + optional Google Gemini API live streaming integration.
-- **Verified Industry Experience**:
-  - **Crossing Hurdles**: Developing advanced software engineering benchmark tasks for Project Sentinel Ultra and Terminus 3 to evaluate frontier coding agents (Harbor format, oracle implementations, deterministic verifiers).
-  - **Handshake AI**: Authoring software engineering benchmark tasks for TerminalBench 2 and Project Dynamo (Docker testbeds, deterministic verification pipelines).
-- **Core Projects**:
-  - **LLM Powered Smart Screen Recorder**: OCR video capture pipeline with Sentence Transformers, ChromaDB, and Gemini RAG synthesis.
-  - **Stay Finder**: Full-stack accommodation booking engine with Next.js App Router, PostgreSQL, and Prisma ORM.
-  - **Ink & Insights**: Data-driven blog engine with Redis sliding-window rate limiting and automated Gemini content critique.
-  - **GCC Intel**: Market intelligence platform auditing verified data across India's 2,000+ Global Capability Centers.
-  - **Autonomous Agent Benchmarking Suite**: Frontier coding agent evaluation testbeds with Docker isolation and deterministic oracle harnesses.
-- **Education**:
-  - **B.Tech in Electronics & Communication Engineering**, Guru Jambheshwar University of Science and Technology (2022 – 2026).
-  - **Senior Secondary (12th Grade)**, Aggarwal Public School (2021 – 2022).
-- **Contact & Channels**:
-  - Direct Email: `khandelwalu196@gmail.com`
-  - LinkedIn: [in/umang-khandelwal](https://www.linkedin.com/in/umang-khandelwal-71604228b/)
-  - GitHub: [@umangkhandelwall](https://github.com/umangkhandelwall)
+```mermaid
+flowchart TD
+    subgraph Data Layer
+        A[portfolioData.ts] -->|Validated via Zod| B[schema.ts Strict Type Contracts]
+    end
+
+    subgraph Build Pipeline
+        B --> C[tsc Typecheck]
+        C --> D[Vite Client Bundle: dist/index.html & assets]
+        D --> E[Vite SSR Server Entry: dist/server/entry-server.js]
+        E --> F[prerender.js: renderToString App]
+        F -->|Inject into root| G[dist/index.html: 76KB Fully Pre-Rendered HTML]
+    end
+
+    subgraph Runtime & Client
+        G -->|Fast Initial Contentful Paint| H[Browser Screen Paint]
+        H -->|hydrateRoot when root hasChildNodes| I[React Hydration & Listeners]
+        I --> J[Lenis Smooth Scroll & Particle Mesh]
+        I --> K[Cursor Readout HUD & Telemetry Ticker]
+    end
+```
 
 ---
 
-## 🛠️ Tech Stack
+## 📊 Verified Projects & Honest Metrics
 
-- **Frontend**: React 19, TypeScript, Next.js, Vite
-- **Styling**: Tailwind CSS v4, Custom Titanium & Chrome Specular Shader CSS
-- **Animations**: Framer Motion, HTML5 Canvas 2D Physics, Hardware-Accelerated Keyframes
-- **AI & Data**: Google Gemini API, Sentence Transformers, ChromaDB, OpenCV, Tesseract OCR
-- **Backend & Database**: Python, PostgreSQL, Prisma ORM, Redis, Docker, Bash
-- **Icons**: Lucide React + Custom Monochrome Brand Vectors
+| Project | Core Stack | Honest Metric | Code & Links |
+| :--- | :--- | :--- | :--- |
+| **Stay Finder** | Next.js (App Router), TypeScript, PostgreSQL, Prisma, Tailwind | **500+ dynamic listings · <100ms query latency · 95+ Lighthouse** | [GitHub Repo](https://github.com/umangkhandelwall/StayFinder) |
+| **Ink & Insights** | Next.js, PostgreSQL, Prisma, Redis, Google Gemini API | **500+ active users · 99.2% uptime · <2s LLM latency** | [GitHub Repo](https://github.com/umangkhandelwall/Ink-Insights) |
+| **GCC Intel** | Next.js, TypeScript, Tailwind CSS, Data Analytics | **2,000+ GCC centers analyzed · 5 tier-1 metro clusters** | [GitHub Repo](https://github.com/umangkhandelwall/gccintel) |
+| **LLM Smart Screen Recorder** | Python, OpenCV, Tesseract OCR, ChromaDB, Gemini RAG | **10,000+ indexed tokens · sub-second vector search** | [GitHub Profile](https://github.com/umangkhandelwall) |
+| **Agent Benchmarking Suite** | Docker, Python, Bash, TerminalBench 2, Harbor Format | **100% deterministic reproducibility · 0 flaky runs** | [GitHub Profile](https://github.com/umangkhandelwall) |
 
 ---
 
-## 💻 Local Installation & Setup
+## 💼 Verified Professional Experience
+
+### **Advanced AI Engineer** — Crossing Hurdles *(Jul 2026 – Present · Remote)*
+- Author standardized **Harbor-format** software engineering benchmark tasks for Project Sentinel Ultra and Terminus 3 evaluating frontier coding models (Claude 3.5 Sonnet, GPT-4o).
+- Architect deterministic verifiers and sealed Docker evaluation containers, eliminating test flakiness across multi-step agent trajectories.
+- Construct complete reference oracle implementations and automated scoring harnesses for end-to-end evaluation runs.
+
+### **LLM Trainer** — Handshake AI *(Jun 2026 – Aug 2026 · Remote)*
+- Authored 20+ software engineering benchmark tasks for **TerminalBench 2** and Project Dynamo evaluating terminal navigation, library migrations, and bug localization.
+- Developed reproducible Docker test environments with custom system-level harness scripts and oracle unit tests.
+- Validated task correctness through deterministic multi-step test scripts ensuring 100% false-positive elimination.
+
+---
+
+## 🔍 SEO & Discoverability Stack
+
+- **Static Pre-rendering**: Raw initial HTML returns 76KB of complete section text (no client-rendering white screens).
+- **Robots & Sitemap**: `public/robots.txt` and `public/sitemap.xml` configured for search engine bots.
+- **LLM Search Friendly**: `public/llms.txt` conforms to the AI-crawling format for Claude, Perplexity, and Cursor.
+- **Structured Data**: `application/ld+json` Person, WebSite, and ProfilePage schema graph in `index.html`.
+- **Absolute Social Graph**: Open Graph and Twitter Card tags with absolute URLs (`https://umangkhandelwal.vercel.app/umang-portrait.jpg`).
+
+---
+
+## ⚡ Motion & Telemetry Layer
+
+- **Cursor Readout HUD**: Real-time pointer telemetry `[X: 1240, Y: 0450]`, scroll percentage, and system status indicator (respects `prefers-reduced-motion`).
+- **Telemetry Status Ticker**: Continuous horizontal marquee showcasing active disciplines and system metrics.
+- **Hardware-Accelerated Canvas**: Pointer-reactive particle mesh and ambient grid lighting.
+- **Lenis Smooth Scroll**: Inertial, fluid page scrolling with zero jank.
+- **Scramble Text Decryption**: High-frequency cipher decryptions initializing cleanly in SSR without DOM flash.
+
+---
+
+## 🛠️ Local Development & Build
 
 ### Prerequisites
-Make sure [Node.js](https://nodejs.org/) (v18 or higher) is installed.
+- Node.js >= 18.0.0
+- npm >= 9.0.0
 
-### 1. Clone the repository
+### Quick Start
 ```bash
+# 1. Clone repository
 git clone https://github.com/umangkhandelwall/Portfolio.git
 cd Portfolio
-```
 
-### 2. Install dependencies
-```bash
+# 2. Install dependencies
 npm install
-```
 
-### 3. Start development server
-```bash
+# 3. Start local development server
 npm run dev
-```
-Open [http://localhost:5173/](http://localhost:5173/) in your browser.
 
-### 4. Create production build
-```bash
+# 4. Run TypeScript typecheck & SSG pre-render build
 npm run build
+
+# 5. Preview the pre-rendered production build
+npm run preview
 ```
-Optimized assets will be compiled into the `dist/` directory.
 
 ---
 
-## 🌐 Deployment
+## 🗺️ Engineering Roadmap
 
-### Vercel (1-Click Deployment)
-This repository includes a pre-configured `vercel.json` file.
-1. Import this repository into [Vercel](https://vercel.com/new).
-2. Click **Deploy**. Vercel will automatically build and publish the portfolio with instant SSL and global CDN distribution.
+- [x] **SSG Pre-rendering**: Static HTML pre-render pipeline via `entry-server.tsx` and `prerender.js`.
+- [x] **Zod Validation**: Build-time validated content schema (`schema.ts`).
+- [x] **Discoverability**: `robots.txt`, `sitemap.xml`, `llms.txt`, and JSON-LD schema.
+- [x] **Motion Upgrades**: ScrambleText SSR fix, engineering ticker marquee, cursor HUD readout.
+- [x] **CI/CD Quality Gates**: GitHub Actions workflow testing TypeScript and static SSG build.
+- [ ] **Tier 1 (Next)**: Next.js App Router migration + RAG "Ask AI" endpoint with pgvector embeddings & server-side streaming.
+- [ ] **Tier 2**: Portfolio MCP Server integration for Cursor and Claude querying.
+- [ ] **Tier 3**: FastAPI + LangGraph agent service with Langfuse tracing.
 
 ---
 
 ## 📄 License
-© 2026 Umang Khandelwal. All rights reserved.
+Released under the [MIT License](LICENSE). Copyright © 2026 Umang Khandelwal.

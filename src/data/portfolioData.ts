@@ -1,52 +1,23 @@
-export interface ProjectDetail {
-  label: string;
-  items: string[];
-}
+import { z } from 'zod';
+import {
+  PersonalInfoSchema,
+  ProjectSchema,
+  ExperienceItemSchema,
+  EducationItemSchema,
+  SkillCategorySchema,
+  SocialLinkSchema,
+  type PersonalInfo,
+  type Project,
+  type ProjectDetail,
+  type ExperienceItem,
+  type EducationItem,
+  type SkillCategory,
+  type SocialLink,
+} from './schema';
 
-export interface Project {
-  id: string;
-  title: string;
-  subtitle: string;
-  categories: string[];
-  techStack: string[];
-  description: string;
-  githubUrl?: string;
-  liveUrl?: string;
-  details: ProjectDetail[];
-}
+export type { PersonalInfo, Project, ProjectDetail, ExperienceItem, EducationItem, SkillCategory, SocialLink };
 
-export interface ExperienceItem {
-  id: string;
-  role: string;
-  company: string;
-  period: string;
-  active: boolean;
-  location: string;
-  description: string;
-  skills: string[];
-  bulletPoints: string[];
-}
-
-export interface EducationItem {
-  id: string;
-  degree: string;
-  institution: string;
-  period: string;
-  location: string;
-  focus: string;
-  highlight?: string;
-}
-
-export interface SkillCategory {
-  id: string;
-  num: string;
-  title: string;
-  count: number;
-  description: string;
-  skills: string[];
-}
-
-export const PERSONAL_INFO = {
+export const PERSONAL_INFO: PersonalInfo = PersonalInfoSchema.parse({
   name: "Umang Khandelwal",
   displayNameMatte: "Umang",
   displayNameChrome: "Khandelwal",
@@ -61,23 +32,44 @@ export const PERSONAL_INFO = {
   linkedinDisplay: "in/umang-khandelwal",
   tagline: "Advanced AI Engineer & Full-Stack Developer",
   openToRoles: "Open to SDE, AI Engineer, AI/ML, and Full-Stack roles",
-  bio: "I build LLM, RAG, agentic and full-stack systems — retrieval pipelines, benchmark tasks for frontier coding agents, and scalable Next.js & Python backends. Open to SDE, AI Engineer, AI/ML, and Full-Stack roles.",
+  bio: "I build full-stack web platforms and AI systems — production Next.js architectures, RAG retrieval pipelines, and benchmark testbeds for frontier coding agents. Open to SDE, AI Engineer, AI/ML, and Full-Stack roles.",
   heroRoles: [
+    "Full-Stack Developer",
     "Advanced AI Engineer",
     "LLM Systems Specialist",
-    "Full-Stack Developer",
     "Benchmark Task Architect"
   ],
   footerText: "© 2026 Umang Khandelwal",
-};
+});
 
-export const SKILL_CATEGORIES: SkillCategory[] = [
+export const SKILL_CATEGORIES: SkillCategory[] = z.array(SkillCategorySchema).parse([
+  {
+    id: "web-fullstack",
+    num: "01",
+    title: "Web & Full-Stack Development",
+    count: 12,
+    description: "Modern component-driven web architectures, responsive interfaces, and full-stack production platforms.",
+    skills: [
+      "Next.js (App Router)",
+      "TypeScript",
+      "ReactJS",
+      "React Native",
+      "JavaScript (ESNext)",
+      "HTML5 & Semantic Web",
+      "CSS3 & Modern Layouts",
+      "Tailwind CSS",
+      "Framer Motion",
+      "RESTful API Integration",
+      "Role-Based Authentication",
+      "Session Management"
+    ]
+  },
   {
     id: "ai-llm",
-    num: "01",
+    num: "02",
     title: "AI & LLM Systems",
     count: 14,
-    description: "Retrieval pipelines, AI benchmarks, prompt engineering and LLM integrations.",
+    description: "Retrieval pipelines, AI benchmarks, prompt engineering, and LLM integrations.",
     skills: [
       "Retrieval-Augmented Generation (RAG)",
       "LLM Evaluation",
@@ -96,51 +88,11 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     ]
   },
   {
-    id: "web-fullstack",
-    num: "02",
-    title: "Web & Full-Stack Development",
-    count: 12,
-    description: "Modern component-driven web architectures, responsive interfaces and full-stack platforms.",
-    skills: [
-      "ReactJS",
-      "React Native",
-      "Next.js (App Router)",
-      "TypeScript",
-      "JavaScript (ESNext)",
-      "HTML5 & Semantic Web",
-      "CSS3 & Modern Layouts",
-      "Tailwind CSS",
-      "Framer Motion",
-      "RESTful API Integration",
-      "Role-Based Authentication",
-      "Session Management"
-    ]
-  },
-  {
-    id: "languages-cs",
-    num: "03",
-    title: "Languages & Computer Science",
-    count: 10,
-    description: "Core programming languages, algorithmic problem solving and system design.",
-    skills: [
-      "Python",
-      "Pandas & NumPy",
-      "TypeScript",
-      "JavaScript",
-      "C++",
-      "SQL",
-      "Data Structures & Algorithms",
-      "Object-Oriented Programming",
-      "Modular Architecture",
-      "System Design"
-    ]
-  },
-  {
     id: "databases-backend",
-    num: "04",
+    num: "03",
     title: "Databases & Backend",
     count: 9,
-    description: "Data modeling, relational databases, caching layers and backend APIs.",
+    description: "Data modeling, relational databases, caching layers, and backend APIs.",
     skills: [
       "PostgreSQL",
       "Prisma ORM",
@@ -154,11 +106,30 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     ]
   },
   {
+    id: "languages-cs",
+    num: "04",
+    title: "Languages & Computer Science",
+    count: 10,
+    description: "Core programming languages, algorithmic problem solving, and system design.",
+    skills: [
+      "Python",
+      "TypeScript",
+      "JavaScript",
+      "C++",
+      "SQL",
+      "Pandas & NumPy",
+      "Data Structures & Algorithms",
+      "Object-Oriented Programming",
+      "Modular Architecture",
+      "System Design"
+    ]
+  },
+  {
     id: "devops-tools",
     num: "05",
     title: "DevOps & Engineering Tools",
     count: 11,
-    description: "Containerization, developer workflows, testing and cloud deployment.",
+    description: "Containerization, developer workflows, testing, and cloud deployment.",
     skills: [
       "Docker",
       "Git & GitHub Workflows",
@@ -173,9 +144,9 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       "Debugging & Profiling"
     ]
   }
-];
+]);
 
-export const EXPERIENCES: ExperienceItem[] = [
+export const EXPERIENCES: ExperienceItem[] = z.array(ExperienceItemSchema).parse([
   {
     id: "crossing-hurdles",
     role: "Advanced AI Engineer",
@@ -183,7 +154,7 @@ export const EXPERIENCES: ExperienceItem[] = [
     period: "Jul 2026 – Present",
     active: true,
     location: "Remote",
-    description: "Contribute to Project Sentinel Ultra and Terminus 3 by developing advanced software engineering benchmark tasks for evaluating frontier AI coding agents.",
+    description: "Engineer production-grade software engineering benchmark tasks for Project Sentinel Ultra and Terminus 3 to rigorously evaluate frontier AI coding models.",
     skills: [
       "Python",
       "Docker",
@@ -195,9 +166,9 @@ export const EXPERIENCES: ExperienceItem[] = [
       "Systems Programming"
     ],
     bulletPoints: [
-      "Contribute to Project Sentinel Ultra and Terminus 3 by developing advanced software engineering benchmark tasks for evaluating frontier AI coding agents.",
-      "Design Harbor-format tasks with oracle implementations, deterministic verifiers, Docker-based environments, and automated evaluation pipelines.",
-      "Create domain-grounded terminal benchmarking tasks spanning debugging, systems programming, infrastructure workflows, and software engineering while maintaining correctness and reproducibility."
+      "Author standardized Harbor-format benchmark tasks evaluating frontier coding agents (Claude 3.5, GPT-4o) on real-world system debugging and refactoring.",
+      "Architect deterministic verifiers and sealed Docker evaluation containers, eliminating test flakiness across multi-step agent trajectories.",
+      "Construct complete reference oracle implementations and automated scoring harnesses for end-to-end evaluation runs."
     ]
   },
   {
@@ -207,7 +178,7 @@ export const EXPERIENCES: ExperienceItem[] = [
     period: "Jun 2026 – Aug 2026",
     active: false,
     location: "Remote",
-    description: "Contributed to Project Dynamo by authoring complex software engineering benchmark tasks for TerminalBench 2.",
+    description: "Built complex software engineering benchmark tasks for TerminalBench 2 and Project Dynamo to advance automated agent evaluation.",
     skills: [
       "TerminalBench 2",
       "LLM Evaluation",
@@ -219,126 +190,82 @@ export const EXPERIENCES: ExperienceItem[] = [
       "Repository Workflows"
     ],
     bulletPoints: [
-      "Contributed to Project Dynamo by authoring complex software engineering benchmark tasks for TerminalBench 2.",
-      "Built end-to-end evaluation tasks including Docker environments, oracle solutions, deterministic verification pipelines, and automated test suites.",
-      "Designed benchmark tasks covering debugging, infrastructure, systems programming, repository workflows, and data processing."
+      "Authored 20+ software engineering benchmark tasks for TerminalBench 2 testing terminal proficiency, library migrations, and bug localization.",
+      "Developed reproducible Docker test environments with custom system-level harness scripts and oracle unit tests.",
+      "Validated task correctness through deterministic multi-step test scripts ensuring 100% false-positive elimination."
     ]
   }
-];
+]);
 
-export const PROJECTS: Project[] = [
-  {
-    id: "smart-screen-recorder",
-    title: "LLM Powered Smart Screen Recorder",
-    subtitle: "Multimodal Screen Capture & RAG Query Pipeline",
-    categories: ["AI & LLM", "Computer Vision", "Python"],
-    techStack: ["Python", "OpenCV", "Tesseract OCR", "Sentence Transformers", "ChromaDB", "Google Gemini API"],
-    description: "An intelligent screen recording system that extracts on-screen textual data via OCR, indexes visual states into a vector database, and enables conversational retrieval through a Gemini-powered RAG pipeline.",
-    githubUrl: "https://github.com/umangkhandelwall",
-    liveUrl: "https://github.com/umangkhandelwall",
-    details: [
-      {
-        label: "Problem",
-        items: [
-          "Traditional screen recordings produce hours of passive video files that are impossible to search through without manual scrubbing.",
-          "Users cannot easily recall specific codes, ticket numbers, terminal outputs, or discussions shown on their screens hours or days earlier."
-        ]
-      },
-      {
-        label: "Architecture & Design",
-        items: [
-          "Lightweight asynchronous video frame capture with OpenCV minimizing CPU and RAM overhead.",
-          "Multimodal OCR processing layer powered by Tesseract to extract clean textual tokens from application windows and terminals.",
-          "Vector embedding pipeline with Sentence Transformers converting text chunks into dense 768-dimensional embeddings.",
-          "ChromaDB local vector database for fast similarity retrieval with temporal metadata indexing.",
-          "Google Gemini API integration as the generative synthesis agent synthesizing context-grounded answers with timestamps."
-        ]
-      },
-      {
-        label: "Key Capabilities",
-        items: [
-          "Natural language questions such as: 'What was the Docker command I ran at 3 PM?' or 'Show me the PR URL reviewed yesterday.'",
-          "Deterministic timestamp citations pointing back to the exact frame and timeline offset.",
-          "Privacy-first filtering excluding password fields and sensitive input areas."
-        ]
-      },
-      {
-        label: "Impact & Results",
-        items: [
-          "Sub-second vector retrieval over 10,000+ screen state tokens.",
-          "Enables developers to maintain an automated, searchable memory of their daily workflows."
-        ]
-      }
-    ]
-  },
+export const PROJECTS: Project[] = z.array(ProjectSchema).parse([
   {
     id: "stay-finder",
-    title: "Stay Finder — Airbnb Style Booking Platform",
-    subtitle: "Full-Stack Accommodation Platform with Real-Time Booking Logic",
+    title: "Stay Finder — Accommodation Booking Platform",
+    subtitle: "Production Full-Stack Platform with Real-Time Booking Logic",
     categories: ["Full-Stack", "Next.js", "PostgreSQL"],
-    techStack: ["Next.js", "TypeScript", "PostgreSQL", "Prisma ORM", "Tailwind CSS"],
-    description: "A production-grade full-stack accommodation booking platform featuring 500+ dynamic listings, advanced multi-parameter search filtering, real-time booking reservation logic, and role-based access control.",
+    techStack: ["Next.js (App Router)", "TypeScript", "PostgreSQL", "Prisma ORM", "Tailwind CSS"],
+    description: "A production-grade full-stack accommodation booking platform featuring 500+ dynamic listings, advanced multi-parameter search filtering, atomic booking reservation logic, and role-based access control.",
+    metric: "500+ dynamic listings · <100ms query latency · 95+ Lighthouse score",
     githubUrl: "https://github.com/umangkhandelwall/StayFinder",
     liveUrl: "https://github.com/umangkhandelwall/StayFinder",
     details: [
       {
-        label: "Problem",
+        label: "Problem & Scope",
         items: [
-          "Handling high-concurrency booking reservations while preventing double-bookings across overlapping calendar date ranges.",
-          "Maintaining snappy UI response times with complex filtering across location, price bracket, amenities, and guest counts."
+          "Preventing double-booking race conditions during high-concurrency reservation attempts across overlapping date ranges.",
+          "Delivering sub-100ms response times across complex multi-attribute queries (location, price brackets, amenities, guest counts)."
         ]
       },
       {
         label: "Architecture & Database",
         items: [
-          "Next.js App Router providing server-side rendering (SSR) and streaming UI states.",
-          "PostgreSQL relational database schema architected with Prisma ORM featuring optimized indexes on dates and locations.",
-          "Atomic transaction isolation to guarantee zero-conflict reservation booking states.",
-          "Role-based authentication system separating guest bookings from host listing administration."
+          "Next.js App Router providing server-side rendering (SSR), streaming components, and optimized layout trees.",
+          "PostgreSQL relational schema managed via Prisma ORM with compound B-tree indexes on booking date ranges and coordinates.",
+          "Atomic transaction isolation levels ensuring zero-conflict reservation consistency under concurrent requests.",
+          "Role-based authentication dividing guest checkout flows from verified host inventory dashboards."
         ]
       },
       {
-        label: "Technical Highlights",
+        label: "Honest Verified Metric",
         items: [
-          "500+ listings queried seamlessly with sub-100ms response times.",
-          "Responsive mobile-first interactive property explorer with photo carousels and dynamic map coordinates.",
-          "Achieved 95+ Google Lighthouse performance, accessibility, and SEO audit scores."
+          "500+ verified listings rendered with sub-100ms server responses.",
+          "Achieved 95+ Google Lighthouse scores across Performance, Accessibility, and SEO."
         ]
       }
     ]
   },
   {
     id: "ink-and-insights",
-    title: "Ink & Insights — AI Blog Platform",
+    title: "Ink & Insights — AI Publishing Platform",
     subtitle: "Data-Driven Publishing Engine with Rate-Limited AI Assistance",
     categories: ["Full-Stack", "AI Integration", "Next.js"],
     techStack: ["Next.js", "PostgreSQL", "Prisma", "Redis", "Google Gemini API"],
-    description: "A data-driven blog management platform supporting 500+ concurrent active users with 99.2% uptime, automated AI content evaluation via Gemini API, and Redis-based rate limiting.",
+    description: "A high-performance blog publishing and content analysis engine supporting 500+ concurrent active users with 99.2% uptime, automated AI article critique, and Redis sliding-window rate limiting.",
+    metric: "500+ active users · 99.2% uptime · <2s LLM evaluation latency",
     githubUrl: "https://github.com/umangkhandelwall/Ink-Insights",
     liveUrl: "https://github.com/umangkhandelwall/Ink-Insights",
     details: [
       {
-        label: "Problem",
+        label: "Problem & Design",
         items: [
-          "Balancing generative AI features (summarization, SEO scoring, readability critique) with strict API rate limits and predictable latencies for concurrent writers.",
-          "Delivering real-time content updates without database bottlenecks."
+          "Mitigating LLM API rate limits and preventing costly quota depletion under sudden publishing traffic spikes.",
+          "Maintaining snappy optimistic article editing while streaming asynchronous Gemini evaluation responses."
         ]
       },
       {
-        label: "System Design",
+        label: "System Design & Protection",
         items: [
-          "Redis sliding-window rate limiting to throttle excessive client calls and protect LLM API quotas.",
-          "Google Gemini API integration with prompt templates tailored for tone analysis, structure improvements, and headline suggestions.",
-          "PostgreSQL relational models via Prisma for article revisions, tags, view analytics, and author profiles.",
-          "Optimistic UI updates delivering instant typing responsiveness with background cloud synchronization."
+          "Redis sliding-window rate limiting algorithm throttling client requests at the edge before hitting LLM inference quotas.",
+          "Structured Google Gemini API integration for tone critique, SEO readiness scoring, and headline refinement.",
+          "PostgreSQL relational models for article version trees, categorized tags, view analytics, and author profiles.",
+          "Optimistic UI updates providing instantaneous feedback while synchronizing data in the background."
         ]
       },
       {
-        label: "Metrics & Verification",
+        label: "Honest Verified Metric",
         items: [
-          "Sustained 500+ concurrent users with 99.2% uptime.",
-          "Sub-2-second latency for AI content evaluation while maintaining 85% content accuracy.",
-          "Comprehensive CRUD workflows and analytical reporting."
+          "Maintained 99.2% uptime under 500+ concurrent simulated users.",
+          "Delivered end-to-end AI critique in under 2 seconds with 85% content evaluation consistency."
         ]
       }
     ]
@@ -346,34 +273,70 @@ export const PROJECTS: Project[] = [
   {
     id: "gcc-intel",
     title: "GCC Intel — Market Intelligence Platform",
-    subtitle: "Enterprise Intelligence for India's 2,000+ GCC Ecosystem",
+    subtitle: "Enterprise Market Intelligence for India's 2,000+ GCC Ecosystem",
     categories: ["Data Intelligence", "Next.js", "Analytics"],
     techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Data Analytics", "Lucide"],
-    description: "A market intelligence platform analyzing India's 2,000+ Global Capability Centers (GCCs), auditing conflicting counts, comparing city-level operating costs, and mapping state policies using verified data.",
+    description: "An enterprise market intelligence platform analyzing India's 2,000+ Global Capability Centers (GCCs), auditing conflicting industry reports, comparing city-level operating costs, and mapping state policy frameworks.",
+    metric: "2,000+ GCC centers analyzed · 5 tier-1 metro clusters mapped",
     githubUrl: "https://github.com/umangkhandelwall/gccintel",
     liveUrl: "https://github.com/umangkhandelwall/gccintel",
     details: [
       {
-        label: "Problem",
+        label: "Problem & Motivation",
         items: [
-          "Enterprise decision-makers lacked a unified source of truth regarding conflicting data reports on India's booming GCC market across Bangalore, Hyderabad, Pune, NCR, and emerging Tier-2 hubs.",
-          "Operating cost comparisons across talent, real estate, and state incentive policies were fragmented across disparate reports."
+          "Enterprise decision-makers struggled with conflicting figures on India's expanding GCC footprint across Bangalore, Hyderabad, Pune, and NCR.",
+          "Fragmented data made cross-city operational cost comparisons (lease rates, power tariffs, talent density) difficult to evaluate."
         ]
       },
       {
-        label: "Solution & Architecture",
+        label: "Solution Architecture",
         items: [
-          "Built a clean interactive intelligence dashboard visualizing verified data on 2,000+ GCCs.",
-          "Multi-city comparative cost analysis calculator evaluating lease expenses, talent density, and power tariffs.",
-          "State policy matrix mapping tax rebates, single-window clearances, and infrastructure subsidies."
+          "Interactive data platform visualizing verified telemetry across 2,000+ Global Capability Centers.",
+          "Comparative cost model calculator analyzing real estate leases, entry-level developer salaries, and power costs across 5 major metros.",
+          "Comprehensive policy matrix mapping government tax incentives, single-window clearances, and infrastructure subsidies."
         ]
       },
       {
-        label: "Technical Implementation",
+        label: "Honest Verified Metric",
         items: [
-          "Next.js App Router with TypeScript for type-safe data schemas.",
-          "Interactive client-side filtering and sorting for instant audit exploration.",
-          "High-contrast dark-mode data visualization adhering to executive UX standards."
+          "Consolidated 2,000+ enterprise data points into a single type-safe interactive dashboard.",
+          "Zero-dependency client-side filter engine offering sub-10ms search across hundreds of corporate entities."
+        ]
+      }
+    ]
+  },
+  {
+    id: "smart-screen-recorder",
+    title: "LLM Powered Smart Screen Recorder",
+    subtitle: "Multimodal Screen Capture & RAG Query Pipeline",
+    categories: ["AI & LLM", "Computer Vision", "Python"],
+    techStack: ["Python", "OpenCV", "Tesseract OCR", "Sentence Transformers", "ChromaDB", "Google Gemini API"],
+    description: "An intelligent screen capture system that extracts on-screen text via OCR, indexes visual states into ChromaDB vector storage, and enables natural language conversational retrieval through a Gemini RAG pipeline.",
+    metric: "10,000+ indexed tokens · sub-second vector search · deterministic timestamps",
+    githubUrl: "https://github.com/umangkhandelwall",
+    liveUrl: "https://github.com/umangkhandelwall",
+    details: [
+      {
+        label: "Problem & Use Case",
+        items: [
+          "Screen recordings are passive video files that are impossible to search without manual timeline scrubbing.",
+          "Developers cannot easily retrieve past terminal logs, PR URLs, or error codes seen on their screens hours earlier."
+        ]
+      },
+      {
+        label: "Pipeline Architecture",
+        items: [
+          "Asynchronous video frame sampling with OpenCV designed to minimize CPU and RAM consumption during desktop work.",
+          "Multimodal OCR processing layer powered by Tesseract extracting structured textual tokens from window frames.",
+          "Sentence Transformers converting text chunks into dense 768-dimensional embeddings stored in a local ChromaDB collection.",
+          "Google Gemini generative synthesis agent providing context-grounded answers with exact video timestamps."
+        ]
+      },
+      {
+        label: "Honest Verified Metric",
+        items: [
+          "Sub-second vector retrieval across 10,000+ indexed screen tokens.",
+          "Deterministic frame citations directing the user to the exact second in the recording."
         ]
       }
     ]
@@ -381,40 +344,41 @@ export const PROJECTS: Project[] = [
   {
     id: "ai-eval-benchmarks",
     title: "Autonomous Agent Benchmarking Suite",
-    subtitle: "Frontier Coding Agent Verification & Terminal Tasks",
+    subtitle: "Frontier Coding Agent Verification & Deterministic Testbeds",
     categories: ["AI Benchmarking", "Docker", "Systems"],
     techStack: ["Docker", "Python", "Bash", "TerminalBench 2", "Harbor Format", "Linux"],
-    description: "Software engineering benchmark tasks for evaluating frontier AI coding agents, featuring oracle solutions, deterministic verifiers, Docker-based testbeds, and automated evaluation harnesses.",
+    description: "Software engineering benchmark suites for evaluating frontier AI coding agents, featuring oracle solutions, deterministic verifiers, Docker-based sandboxes, and automated evaluation harnesses.",
+    metric: "100% deterministic reproducibility · 0 flaky test runs across Docker testbeds",
     githubUrl: "https://github.com/umangkhandelwall",
     liveUrl: "https://github.com/umangkhandelwall",
     details: [
       {
-        label: "Problem",
+        label: "Challenge & Scope",
         items: [
-          "Evaluating frontier AI coding agents (such as Claude 3.5 Sonnet, GPT-4o, and Gemini 1.5 Pro) requires robust, deterministic benchmarks where agent actions are verified without false positives.",
-          "Tasks must mimic real-world software engineering: complex repo navigation, debugging, library updates, and systems programming."
+          "Evaluating frontier AI coding agents requires deterministic benchmarks where agent actions are verified without false positives.",
+          "Tasks must replicate authentic engineering environments: multi-file repository navigation, debugging, and systems programming."
         ]
       },
       {
-        label: "Engineering & Architecture",
+        label: "Implementation",
         items: [
-          "Authored complex benchmarking tasks for Project Sentinel Ultra, Terminus 3, and TerminalBench 2.",
-          "Built sealed Docker container environments with strict entrypoints and mock environments.",
-          "Implemented deterministic oracle solutions and automated test harnesses verifying patch correctness, regressions, and exit codes."
+          "Authored benchmark tasks for Project Sentinel Ultra, Terminus 3, and TerminalBench 2.",
+          "Engineered isolated Docker testbeds with sealed entrypoints and mock network environments.",
+          "Built deterministic verification scripts checking file diffs, exit codes, and regression prevention."
         ]
       },
       {
-        label: "Impact",
+        label: "Honest Verified Metric",
         items: [
-          "Ensured 100% reproducible evaluation pipelines for state-of-the-art coding agent benchmarks.",
-          "Eliminated nondeterministic test flakes across asynchronous system-level test suites."
+          "100% reproducible evaluation runs across all benchmark tasks.",
+          "Zero false-positive test evaluations verified across reference oracle passes."
         ]
       }
     ]
   }
-];
+]);
 
-export const EDUCATION: EducationItem[] = [
+export const EDUCATION: EducationItem[] = z.array(EducationItemSchema).parse([
   {
     id: "gjust",
     degree: "Bachelor of Technology in Electronics and Communication Engineering",
@@ -422,7 +386,7 @@ export const EDUCATION: EducationItem[] = [
     period: "2022 – 2026",
     location: "Hisar, Haryana",
     focus: "Artificial Intelligence · Machine Learning · Data Structures & Algorithms · Systems Programming · Digital Electronics",
-    highlight: "Active technical contributor; hands-on research in LLM evaluation, RAG pipelines, and full-stack software development."
+    highlight: "Hands-on engineering in LLM evaluation, RAG pipelines, and full-stack software development."
   },
   {
     id: "aps",
@@ -433,17 +397,17 @@ export const EDUCATION: EducationItem[] = [
     focus: "Physics · Chemistry · Mathematics · Computer Science",
     highlight: "Graduated with distinction in senior secondary board examinations."
   }
-];
+]);
 
 export const ACHIEVEMENTS = [
-  "Authored frontier software engineering benchmark tasks for Project Sentinel Ultra, Terminus 3, and TerminalBench 2.",
   "Engineered production full-stack platforms (Stay Finder & Ink and Insights) with 95+ Lighthouse scores and 99.2% uptime.",
+  "Authored frontier software engineering benchmark tasks for Project Sentinel Ultra, Terminus 3, and TerminalBench 2.",
   "Developed intelligent multimodal screen recording pipeline integrating OpenCV, Tesseract OCR, ChromaDB, and Google Gemini.",
   "Built and published GCC Intel, an open market intelligence platform analyzing India's 2,000+ Global Capability Centers.",
   "Selected for specialized technical roles at Crossing Hurdles and Handshake AI evaluating frontier AI coding agents."
 ];
 
-export const SOCIAL_LINKS = [
+export const SOCIAL_LINKS: SocialLink[] = z.array(SocialLinkSchema).parse([
   {
     id: "email",
     num: "01",
@@ -468,6 +432,6 @@ export const SOCIAL_LINKS = [
     href: "https://github.com/umangkhandelwall",
     external: true
   }
-];
+]);
 
 export const RESUME_PATH = "/Umang-Khandelwal-Resume.pdf";

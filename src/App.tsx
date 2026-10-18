@@ -11,6 +11,8 @@ import { Education } from './components/Education';
 import { Connect } from './components/Connect';
 import { Footer } from './components/Footer';
 import { AiAssistantModal } from './components/AiAssistantModal';
+import { TelemetryTicker } from './components/TelemetryTicker';
+import { CursorReadout } from './components/CursorReadout';
 import { useBootSequence } from './hooks/useBootSequence';
 
 export const App: React.FC = () => {
@@ -79,6 +81,7 @@ export const App: React.FC = () => {
       {/* Main Content Sections */}
       <main id="app-main" className="relative z-10">
         <Hero onOpenAiAssistant={() => setAiAssistantOpen(true)} />
+        <TelemetryTicker />
         <Skills />
         <Experience />
         <Projects />
@@ -88,6 +91,9 @@ export const App: React.FC = () => {
 
       {/* Footer */}
       <Footer />
+
+      {/* Real-time Cursor & Telemetry Readout */}
+      <CursorReadout />
 
       {/* Interactive AI Assistant Modal */}
       <AiAssistantModal
