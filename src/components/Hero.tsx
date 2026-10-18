@@ -247,15 +247,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAiAssistant }) => {
                     }}
                   />
 
-                  {/* Real Portrait Photo of Umang with optimized face framing & rich tone */}
+                  {/* Real Portrait Photo of Umang in Pure Monochrome Black and White */}
                   <img
                     src="/umang-portrait.jpg"
                     alt="Umang Khandelwal — Advanced AI Engineer & Full-Stack Developer"
                     width={800}
-                    height={900}
+                    height={800}
                     loading="eager"
                     decoding="async"
-                    className="relative h-full w-full object-cover object-[center_18%] filter grayscale-[20%] contrast-[1.04] brightness-[0.98] group-hover/glass:grayscale-0 group-hover/glass:contrast-100 group-hover/glass:brightness-100 transition-all duration-700 ease-out"
+                    className="relative h-full w-full object-cover filter grayscale contrast-[1.06] brightness-[0.98] transition-all duration-500 ease-out"
                   />
 
                   {/* Cinematic Dark Edge Vignette - seamlessly dissolves daytime foliage/background into the deep dark HUD chamber */}
