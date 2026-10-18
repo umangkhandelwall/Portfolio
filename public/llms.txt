@@ -13,47 +13,49 @@
 
 ## Core Technical Skills
 - Web & Full-Stack: Next.js (App Router), TypeScript, React, React Native, Tailwind CSS, Framer Motion, RESTful APIs, Session Auth.
-- AI & LLM Systems: Retrieval-Augmented Generation (RAG), LLM Benchmarking, TerminalBench 2, Harbor Format, Sentence Transformers, ChromaDB, Google Gemini API, Deterministic Verifiers, Docker Evaluators.
+- AI & LLM Systems: Retrieval-Augmented Generation (RAG), LLM Evaluation, Coding Agent Benchmarking, Sentence Transformers, ChromaDB, Google Gemini API, Deterministic Verifiers, Docker Evaluators.
 - Databases & Backend: PostgreSQL, Prisma ORM, Redis (Rate Limiting & Caching), MongoDB, Supabase.
 - Languages: Python, TypeScript, JavaScript, C++, SQL, Bash.
 - DevOps: Docker, Git & GitHub Actions CI/CD, Linux, Postman, Vercel.
 
-## Verified Production Projects
+## Projects
 1. Stay Finder — Accommodation Booking Platform
    - Tech: Next.js (App Router), TypeScript, PostgreSQL, Prisma ORM, Tailwind CSS
    - GitHub: https://github.com/umangkhandelwall/StayFinder
-   - Metric: 500+ dynamic listings · <100ms query latency · 95+ Lighthouse score
-   - Highlights: Solved double-booking concurrency conflicts with atomic transaction isolation; optimized compound B-tree indexes.
+   - Description: Full-stack booking platform with dynamic listings [TODO: need from user: listing count], atomic reservation transactions to prevent booking race conditions, and role-based access control.
+   - Highlights: Compound B-tree indexes on booking date ranges and coordinates; responsive mobile-first UI [TODO: need from user: query latency & Lighthouse score].
 
 2. Ink & Insights — AI Publishing Platform
    - Tech: Next.js, PostgreSQL, Prisma, Redis, Google Gemini API
    - GitHub: https://github.com/umangkhandelwall/Ink-Insights
-   - Metric: 500+ active users · 99.2% uptime · <2s LLM evaluation latency
-   - Highlights: Redis sliding-window rate limiting to protect LLM inference quotas; automated content structure and SEO critique.
+   - Description: Content publishing platform featuring automated editorial critique and Redis sliding-window rate limiting to manage AI inference quotas [TODO: need from user: active user count & uptime].
+   - Highlights: Asynchronous Gemini API integration for tone and structure feedback; optimistic UI state updates [TODO: need from user: latency].
 
 3. GCC Intel — Market Intelligence Platform
    - Tech: Next.js, TypeScript, Tailwind CSS, Data Analytics
    - GitHub: https://github.com/umangkhandelwall/gccintel
-   - Metric: 2,000+ GCC centers analyzed · 5 tier-1 metro clusters mapped
-   - Highlights: Multi-city operating cost calculator (leases, developer compensation, power tariffs) and state incentive policy matrix.
+   - Description: Market intelligence platform analyzing India's Global Capability Centers (GCCs) across major tech hubs [TODO: need from user: verified GCC count].
+   - Highlights: Multi-city operating cost calculator modeling commercial lease estimates, entry salaries, and utility tariffs, alongside state incentive policy mappings.
 
 4. LLM Powered Smart Screen Recorder
    - Tech: Python, OpenCV, Tesseract OCR, Sentence Transformers, ChromaDB, Google Gemini API
-   - Metric: 10,000+ indexed tokens · sub-second vector search · deterministic timestamps
-   - Highlights: Asynchronous video frame OCR pipeline with dense 768-d vector embeddings and Gemini RAG question answering with exact timestamps.
+   - Description: Intelligent screen capture application that extracts on-screen text via OCR, indexes visual states into ChromaDB vector storage, and enables natural language retrieval through a Gemini RAG pipeline.
+   - Highlights: Asynchronous video frame sampling with OpenCV, dense vector embeddings, and timestamped citations [TODO: need from user: token count & search latency].
 
 5. Autonomous Agent Benchmarking Suite
-   - Tech: Docker, Python, Bash, TerminalBench 2, Harbor Format, Linux
-   - Metric: 100% deterministic reproducibility · 0 flaky test runs across Docker testbeds
-   - Highlights: Standardized benchmark tasks testing frontier coding models (Claude 3.5 Sonnet, GPT-4o) with sealed Docker environments and reference oracle passes.
+   - Tech: Docker, Python, Bash, Linux
+   - Description: Benchmark tasks and deterministic evaluation testbeds for evaluating autonomous AI coding agents on system debugging, dependencies, and repository workflows [TODO: need from user: task count].
+   - Highlights: Isolated Docker sandbox testbeds with sealed entrypoints and automated verification harnesses.
 
 ## Professional Experience
 - Advanced AI Engineer @ Crossing Hurdles (Jul 2026 – Present, Remote)
-  - Authors standardized Harbor-format benchmark tasks evaluating frontier coding models on real-world systems engineering.
-  - Builds sealed Docker containers and deterministic verifiers eliminating evaluation flakiness.
+  - Authors standardized benchmark tasks evaluating AI coding models on real-world system debugging and refactoring.
+  - Builds sealed Docker containers and deterministic verifiers to ensure repeatable evaluation runs.
+  - Constructs reference solutions and automated scoring harnesses.
 - LLM Trainer @ Handshake AI (Jun 2026 – Aug 2026, Remote)
-  - Authored 20+ software engineering benchmark tasks for TerminalBench 2 and Project Dynamo.
-  - Constructed automated verification pipelines with reference oracle tests.
+  - Authored software engineering benchmark tasks [TODO: need from user: task count] testing terminal workflows, library migrations, and bug localization.
+  - Developed reproducible Docker test environments with system-level harness scripts and oracle test suites.
+  - Validated task correctness through deterministic multi-step verification scripts.
 
 ## Education
 - B.Tech in Electronics and Communication Engineering, Guru Jambheshwar University of Science & Technology (2022 – 2026).

@@ -95,15 +95,17 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               </p>
             </div>
 
-            {/* Honest Verified Metric Callout */}
-            <div className="mt-5 flex items-center gap-3 border border-emerald-500/30 bg-emerald-500/10 px-4 py-3">
-              <span className="font-mono text-[10px] tracking-[0.2em] uppercase font-bold text-emerald-400 shrink-0">
-                VERIFIED METRIC //
-              </span>
-              <span className="font-mono text-xs tracking-[0.08em] text-[var(--foreground)]">
-                {project.metric}
-              </span>
-            </div>
+            {/* Architecture Highlight Callout */}
+            {project.highlight && (
+              <div className="mt-5 flex items-center gap-3 border border-emerald-500/30 bg-emerald-500/10 px-4 py-3">
+                <span className="font-mono text-[10px] tracking-[0.2em] uppercase font-bold text-emerald-400 shrink-0">
+                  HIGHLIGHT //
+                </span>
+                <span className="font-mono text-xs tracking-[0.08em] text-[var(--foreground)]">
+                  {project.highlight}
+                </span>
+              </div>
+            )}
 
             {/* Tech Stack Pills */}
             <div className="mt-6">
